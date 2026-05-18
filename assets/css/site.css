@@ -263,6 +263,50 @@ body.dark-mode h2.section-title {
 }
 
 /* ============================
+   MENU HERO (with character art)
+   ============================ */
+.menu-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.menu-hero-text {
+    flex: 1 1 60%;
+    min-width: 240px;
+}
+
+.menu-hero-text .page-logo-img { margin-bottom: 4px; }
+.menu-hero-text h1.mt-4 { margin-top: 8px !important; }
+
+.menu-hero-character {
+    width: 180px;
+    max-width: 30%;
+    height: auto;
+    margin-left: auto;
+    filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.32));
+    transition: transform var(--transition-slow);
+    flex-shrink: 0;
+}
+
+.menu-hero-character:hover {
+    transform: translateY(-2px) rotate(-1deg);
+}
+
+@media (max-width: 720px) {
+    .menu-hero { gap: 14px; justify-content: center; text-align: center; }
+    .menu-hero-text { flex: 1 1 100%; }
+    .menu-hero-character {
+        width: 130px;
+        max-width: 40%;
+        margin: 0 auto;
+        order: -1;
+    }
+}
+
+/* ============================
    COPY-TO-CLIPBOARD TOAST
    ============================ */
 .shmu-toast {

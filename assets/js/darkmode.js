@@ -83,4 +83,40 @@
             showToast(email);
         });
     });
+
+    // ---------- Hidden quad-click admin trigger ----------
+    // 4 fast clicks on the SHMU brand mark opens /admin/.
+    // Counter is stored in sessionStorage so it survives the navigation
+    // that happens between clicks (since the brand is also a link to home).
+    document.addEventListener('DOMContentLoaded', function () {
+        var brand = document.querySelector('.navbar-brand');
+        if (!brand) return;
+        var WINDOW_MS = 1500;
+        var THRESHOLD = 4;
+        var KEY_COUNT = 'shmu_brand_clicks';
+        var KEY_TIME = 'shmu_brand_last';
+
+        brand.addEventListener('click', function (e) {
+            var now = Date.now();
+            var last = parseInt(sessionStorage.getItem(KEY_TIME) || '0', 10);
+            var count = parseInt(sessionStorage.getItem(KEY_COUNT) || '0', 10);
+
+            if (now - last > WINDOW_MS) {
+                count = 1;
+            } else {
+                count += 1;
+            }
+            sessionStorage.setItem(KEY_COUNT, String(count));
+            sessionStorage.setItem(KEY_TIME, String(now));
+
+            if (count >= THRESHOLD) {
+                e.preventDefault();
+                sessionStorage.removeItem(KEY_COUNT);
+                sessionStorage.removeItem(KEY_TIME);
+                showToast('Opening admin…');
+                var adminPath = location.pathname.indexOf('/menu/') !== -1 ? '../admin/' : 'admin/';
+                setTimeout(function () { window.location.href = adminPath; }, 200);
+            }
+        });
+    });
 })();
