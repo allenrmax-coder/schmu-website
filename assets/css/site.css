@@ -263,6 +263,52 @@ body.dark-mode h2.section-title {
 }
 
 /* ============================
+   COPY-TO-CLIPBOARD TOAST
+   ============================ */
+.shmu-toast {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    background: var(--color-green);
+    color: var(--color-navy);
+    padding: 12px 22px;
+    border: 2px solid var(--color-navy);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 6px 0 var(--color-navy), 0 14px 32px rgba(0, 0, 0, 0.35);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    max-width: 90vw;
+    text-align: center;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.shmu-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+[data-copy-email] { cursor: pointer; }
+[data-copy-email]::after {
+    content: '';
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin-left: 6px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='9' y='9' width='13' height='13' rx='2'/><path d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.7;
+    vertical-align: middle;
+}
+
+/* ============================
    BASE
    ============================ */
 *, *::before, *::after { box-sizing: border-box; }
