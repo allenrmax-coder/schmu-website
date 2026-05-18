@@ -85,21 +85,181 @@
 body.dark-mode {
     --bg-page: #1a0f33;
     --bg-page-deep: #0a0518;
-    --bg-card: #2a1d4a;
-    --bg-card-hover: #322256;
+    --bg-card: #2b1f47;
+    --bg-card-hover: #362756;
     --bg-sidebar: #050310;
     --bg-sidebar-deep: #000000;
     --bg-nav: #050310;
-    --bg-tag: #3a2a5e;
-    --bg-tag-strong: #4a3a70;
+    --bg-tag: rgba(168, 125, 212, 0.18);
+    --bg-tag-strong: rgba(168, 125, 212, 0.30);
 
     --text-primary: #FFFFDE;
-    --text-secondary: #d8c9f0;
-    --text-muted: #a797c0;
+    --text-secondary: #e8e0f5;
+    --text-muted: #c8b5e0;
 
     --border-card: #95F067;
-    --border-card-soft: rgba(149, 240, 103, 0.25);
-    --color-cream: #2a1d4a;
+    --border-card-soft: rgba(149, 240, 103, 0.4);
+    --color-cream: #2b1f47;
+}
+
+/* ============================
+   DARK MODE TEXT OVERRIDES
+   Card content uses navy text on cream by default. In dark mode
+   the cards become dark, so navy text would vanish — invert to cream.
+   ============================ */
+body.dark-mode .menu-section,
+body.dark-mode .card,
+body.dark-mode .card-body,
+body.dark-mode .gallery-empty {
+    color: #FFFFDE;
+}
+
+body.dark-mode .menu-section h3,
+body.dark-mode .menu-row-name,
+body.dark-mode .menu-row-product,
+body.dark-mode .card-body .card-title,
+body.dark-mode .card-body .card-text,
+body.dark-mode .card-body p,
+body.dark-mode .card-body b,
+body.dark-mode .card-body strong,
+body.dark-mode .menu-legend-full,
+body.dark-mode .menu-legend-key,
+body.dark-mode .gallery-empty h3,
+body.dark-mode .gallery-empty p,
+body.dark-mode .strain-legend {
+    color: #FFFFDE !important;
+}
+
+body.dark-mode .menu-row-detail,
+body.dark-mode .menu-section-description,
+body.dark-mode .menu-legend-group-label,
+body.dark-mode .menu-legend-key-desc,
+body.dark-mode .menu-legend-note,
+body.dark-mode .card-body em,
+body.dark-mode .card-body i,
+body.dark-mode .price-text {
+    color: #d4c5ee !important;
+}
+
+body.dark-mode .menu-section-note {
+    color: #FFFFDE !important;
+    background-color: rgba(241, 141, 52, 0.18) !important;
+}
+
+body.dark-mode .menu-section-addon {
+    color: #FFFFDE !important;
+    background-color: rgba(121, 222, 83, 0.22) !important;
+}
+
+body.dark-mode .menu-section-addon strong {
+    color: #95F067 !important;
+}
+
+body.dark-mode .price-amount { color: #FFFFDE !important; }
+body.dark-mode .price-tier { color: #95F067 !important; }
+
+body.dark-mode .price-chip {
+    background-color: rgba(255, 255, 222, 0.10) !important;
+    border-color: rgba(149, 240, 103, 0.45) !important;
+    box-shadow: 0 2px 0 rgba(149, 240, 103, 0.30) !important;
+}
+
+body.dark-mode .price-chip:hover {
+    background-color: var(--color-green) !important;
+}
+
+body.dark-mode .price-chip:hover .price-tier,
+body.dark-mode .price-chip:hover .price-amount {
+    color: var(--color-navy) !important;
+}
+
+body.dark-mode .strain-tag.strain-s { color: #fcd34d !important; background-color: rgba(217, 119, 6, 0.35) !important; border-color: rgba(252, 211, 77, 0.5) !important; }
+body.dark-mode .strain-tag.strain-i { color: #c4b5fd !important; background-color: rgba(124, 58, 237, 0.4) !important; border-color: rgba(196, 181, 253, 0.5) !important; }
+body.dark-mode .strain-tag.strain-h { color: #6ee7b7 !important; background-color: rgba(5, 150, 105, 0.4) !important; border-color: rgba(110, 231, 183, 0.5) !important; }
+
+body.dark-mode .grow-tag {
+    background-color: rgba(168, 125, 212, 0.20) !important;
+    color: #d4c5ee !important;
+    border-color: rgba(168, 125, 212, 0.4) !important;
+}
+
+body.dark-mode .menu-section,
+body.dark-mode .card,
+body.dark-mode .gallery-empty,
+body.dark-mode .menu-legend-full {
+    border-color: rgba(149, 240, 103, 0.45) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(149, 240, 103, 0.25) !important;
+}
+
+body.dark-mode .menu-section h3 {
+    border-bottom-color: rgba(168, 125, 212, 0.35) !important;
+}
+
+body.dark-mode .menu-row {
+    border-bottom-color: rgba(168, 125, 212, 0.18) !important;
+}
+
+body.dark-mode .menu-row:hover {
+    background-color: rgba(149, 240, 103, 0.08) !important;
+}
+
+body.dark-mode .menu-legend-full summary { color: #95F067 !important; }
+body.dark-mode .menu-legend-group { border-top-color: rgba(168, 125, 212, 0.22) !important; }
+body.dark-mode .menu-legend-note { border-top-color: rgba(168, 125, 212, 0.22) !important; }
+
+body.dark-mode p.small,
+body.dark-mode .page-subnote {
+    color: #FFFFDE !important;
+    background-color: rgba(149, 240, 103, 0.14) !important;
+    border-color: rgba(149, 240, 103, 0.35) !important;
+}
+
+body.dark-mode .strain-legend {
+    border-color: rgba(149, 240, 103, 0.45) !important;
+    box-shadow: 0 2px 0 rgba(149, 240, 103, 0.25) !important;
+}
+
+body.dark-mode .action-card {
+    color: #FFFFDE !important;
+    border-color: rgba(149, 240, 103, 0.45) !important;
+    box-shadow: 0 4px 0 rgba(149, 240, 103, 0.35) !important;
+}
+
+body.dark-mode .action-card h3 { color: #FFFFDE !important; }
+body.dark-mode .action-card p { color: #c8b5e0 !important; }
+body.dark-mode .action-card:hover { box-shadow: 0 7px 0 rgba(149, 240, 103, 0.55) !important; background-color: #362756 !important; }
+
+body.dark-mode .action-card-icon-wrap {
+    border-color: rgba(9, 46, 109, 0.5) !important;
+}
+
+body.dark-mode .card-header {
+    background-color: rgba(9, 46, 109, 0.85) !important;
+    color: var(--color-accent-light) !important;
+    border-bottom: 1px solid rgba(149, 240, 103, 0.25) !important;
+}
+
+body.dark-mode .card-body h5:not(.card-title) { color: #95F067 !important; }
+body.dark-mode .card-body a { color: #95F067 !important; }
+body.dark-mode .card-body a:hover { color: var(--color-accent-light) !important; }
+
+body.dark-mode .btn-primary {
+    background-color: var(--color-green) !important;
+    color: var(--color-navy) !important;
+    border-color: var(--color-navy) !important;
+    box-shadow: 0 3px 0 var(--color-navy) !important;
+}
+
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn-primary:focus {
+    background-color: var(--color-green-bright) !important;
+    color: var(--color-navy) !important;
+}
+
+body.dark-mode h1.mt-4,
+body.dark-mode h1.page-title,
+body.dark-mode h2.section-title {
+    color: #FFFFDE !important;
 }
 
 /* ============================
