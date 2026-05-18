@@ -28,16 +28,60 @@
         return '';
     }
 
+    // Lookup tables populated from menu.json legend
+    var LEGEND_LOOKUP = {};
+
+    function buildLegendLookup(legend) {
+        LEGEND_LOOKUP = {};
+        if (!legend) return;
+        ['growing', 'tier', 'strain'].forEach(function (group) {
+            (legend[group] || []).forEach(function (entry) {
+                LEGEND_LOOKUP[String(entry.key).toUpperCase()] = entry.desc;
+            });
+        });
+    }
+
+    function explain(key) {
+        if (!key) return '';
+        var desc = LEGEND_LOOKUP[String(key).toUpperCase()];
+        return desc ? key + ' — ' + desc : key;
+    }
+
     function renderStrainTag(strain) {
         if (!strain) return '';
-        return '<span class="strain-tag ' + strainClass(strain) + '">' + escapeHtml(strain) + '</span>';
+        return '<span class="strain-tag ' + strainClass(strain) + '" title="' + escapeHtml(explain(strain)) + '">' + escapeHtml(strain) + '</span>';
     }
 
     function renderTags(tags) {
         if (!tags || !tags.length) return '';
         return tags.map(function (t) {
-            return '<span class="grow-tag">' + escapeHtml(t) + '</span>';
+            return '<span class="grow-tag" title="' + escapeHtml(explain(t)) + '">' + escapeHtml(t) + '</span>';
         }).join('');
+    }
+
+    function renderTopLegend(legend) {
+        if (!legend) return '';
+        function group(label, items) {
+            if (!items || !items.length) return '';
+            var keys = items.map(function (e) {
+                var cls = (label === 'Strain') ? ('strain-tag ' + strainClass(e.key)) : 'grow-tag';
+                return '<span class="menu-legend-key">' +
+                    '<span class="' + cls + '">' + escapeHtml(e.key) + '</span>' +
+                    '<span class="menu-legend-key-desc">' + escapeHtml(e.desc) + '</span>' +
+                    '</span>';
+            }).join('');
+            return '<div class="menu-legend-group">' +
+                '<div class="menu-legend-group-label">' + escapeHtml(label) + '</div>' +
+                '<div class="menu-legend-items">' + keys + '</div>' +
+                '</div>';
+        }
+        return '<details class="menu-legend-full" open>' +
+            '<summary>Menu Key — what the symbols mean</summary>' +
+            group('Growing', legend.growing) +
+            group('Tier', legend.tier) +
+            group('Strain', legend.strain) +
+            '<p class="menu-legend-note">Sativa / Indica may indicate as little as 60% in one direction. Use Google, Leafly, AllBud, or Seedfinder for full strain details.</p>' +
+            '</details>';
     }
 
     function renderPriceChip(price) {
@@ -132,6 +176,7 @@
         var subtitleEl = document.getElementById('page-subtitle');
         var sectionsEl = document.getElementById('menu-sections');
         var legendEl = document.getElementById('strain-legend');
+        var menuLegendEl = document.getElementById('menu-legend');
         var notesEl = document.getElementById('menu-footer-notes');
 
         if (!sectionsEl) {
@@ -143,6 +188,8 @@
 
         loadMenu(assetPath)
             .then(function (data) {
+                buildLegendLookup(data.legend);
+
                 var category = data.categories && data.categories[categoryId];
                 if (!category) {
                     sectionsEl.innerHTML = '<p class="menu-error">Category not found.</p>';
@@ -152,6 +199,10 @@
                 if (subtitleEl && category.subtitle) subtitleEl.textContent = category.subtitle;
                 if (document.title.indexOf('Shmu') !== -1) {
                     document.title = category.title + ' — Shmu The Cannaprophet';
+                }
+
+                if (menuLegendEl) {
+                    menuLegendEl.innerHTML = renderTopLegend(data.legend);
                 }
 
                 var html = (category.sections || []).map(renderSection).join('');
