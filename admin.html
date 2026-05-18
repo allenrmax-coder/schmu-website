@@ -415,13 +415,16 @@
     <script>
     // ============================================
     // SHMU ADMIN
-    // Password (SHA-256 of "shmuadmin"):
-    // c14a37acf71a72d095991fc4a78ae46992532cfbeb1cc304ae206bf5b06e662e
+    // Password hash is SHA-256 of the actual password.
+    // To rotate the password:
+    //   1. Generate a new strong password
+    //   2. Compute its SHA-256 hash (e.g. printf "%s" "yourpassword" | sha256sum)
+    //   3. Replace ADMIN_HASH below with the new hash
     // ============================================
     (function () {
         'use strict';
 
-        var ADMIN_HASH = 'c14a37acf71a72d095991fc4a78ae46992532cfbeb1cc304ae206bf5b06e662e';
+        var ADMIN_HASH = 'd0883547cf78a9225ffdbe4b4b31676cd7959dca9d60bc36666f0c4268da2855';
         var SESSION_KEY = 'shmu_admin_session';
         var DATA_KEY = 'shmu_menu_override';
 
