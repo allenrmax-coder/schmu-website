@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" role="img" aria-label="Shmu The Cannaprophet">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#95d5b2"/>
+      <stop offset="0.5" stop-color="#52b788"/>
+      <stop offset="1" stop-color="#1b4332"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#e8c060"/>
+      <stop offset="1" stop-color="#a8741a"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <text x="300" y="135" text-anchor="middle"
+          font-family="'Outfit', sans-serif" font-weight="900" font-size="120"
+          fill="url(#g1)" stroke="#1b4332" stroke-width="4">SHMU</text>
+    <text x="300" y="215" text-anchor="middle"
+          font-family="'Outfit', sans-serif" font-weight="900" font-size="56"
+          fill="url(#g2)" stroke="#1b4332" stroke-width="3">THE CANNAPROPHET</text>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Shmu The Cannaprophet emblem">
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="40%" r="60%">
+      <stop offset="0" stop-color="#7c4fb8"/>
+      <stop offset="0.6" stop-color="#d96b78"/>
+      <stop offset="1" stop-color="#f4a261"/>
+    </radialGradient>
+    <linearGradient id="ringG" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#c8a230"/>
+      <stop offset="0.5" stop-color="#e8c060"/>
+      <stop offset="1" stop-color="#a8741a"/>
+    </linearGradient>
+    <linearGradient id="leafG" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#95d5b2"/>
+      <stop offset="1" stop-color="#1b4332"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer ring -->
+  <ellipse cx="120" cy="120" rx="115" ry="115" fill="none" stroke="url(#ringG)" stroke-width="6"/>
+  <ellipse cx="120" cy="120" rx="108" ry="108" fill="url(#sky)"/>
+
+  <!-- Clouds -->
+  <g fill="#fdfbf0" opacity="0.92">
+    <ellipse cx="46" cy="170" rx="32" ry="14"/>
+    <ellipse cx="64" cy="160" rx="22" ry="11"/>
+    <ellipse cx="194" cy="170" rx="32" ry="14"/>
+    <ellipse cx="176" cy="160" rx="22" ry="11"/>
+  </g>
+
+  <!-- Cannabis leaves background -->
+  <g fill="url(#leafG)" opacity="0.85">
+    <path d="M28 140 q-6 -16 4 -32 q12 -8 22 8 q-2 -18 12 -22 q12 4 8 22 q14 -8 22 4 q-2 14 -16 16 q14 6 8 22 q-12 6 -22 -6 q2 16 -10 22 q-14 -2 -12 -18 q-12 8 -22 -2 q-8 -12 6 -14 z"/>
+    <path d="M212 140 q6 -16 -4 -32 q-12 -8 -22 8 q2 -18 -12 -22 q-12 4 -8 22 q-14 -8 -22 4 q2 14 16 16 q-14 6 -8 22 q12 6 22 -6 q-2 16 10 22 q14 -2 12 -18 q12 8 22 -2 q8 -12 -6 -14 z"/>
+  </g>
+
+  <!-- Body / robe -->
+  <path d="M70 220 Q 70 160 90 140 L 150 140 Q 170 160 170 220 Z" fill="#3a7ec0" stroke="#1b4332" stroke-width="3"/>
+  <!-- Inner tunic -->
+  <path d="M105 220 L 105 150 Q 120 145 135 150 L 135 220 Z" fill="#e8a235" stroke="#1b4332" stroke-width="2"/>
+  <!-- Necklace leaf -->
+  <path d="M120 180 q-8 -8 0 -18 q8 10 0 18 z" fill="#52b788" stroke="#1b4332" stroke-width="1.5"/>
+
+  <!-- Head -->
+  <ellipse cx="120" cy="100" rx="32" ry="38" fill="#f0c8a0" stroke="#1b4332" stroke-width="2.5"/>
+  <!-- Hair -->
+  <path d="M88 95 Q 86 60 120 56 Q 154 60 152 95 L 150 110 Q 145 80 120 78 Q 95 80 90 110 Z" fill="#3d2914" stroke="#1b4332" stroke-width="2"/>
+  <!-- Beard -->
+  <path d="M96 115 Q 100 145 120 148 Q 140 145 144 115 Q 132 125 120 124 Q 108 125 96 115 Z" fill="#3d2914" stroke="#1b4332" stroke-width="2"/>
+  <!-- Headband -->
+  <path d="M88 86 Q 120 82 152 86 L 152 92 Q 120 88 88 92 Z" fill="#52b788" stroke="#1b4332" stroke-width="1.5"/>
+  <!-- Eyes -->
+  <circle cx="108" cy="98" r="2.5" fill="#1b4332"/>
+  <circle cx="132" cy="98" r="2.5" fill="#1b4332"/>
+  <!-- Staff -->
+  <line x1="170" y1="80" x2="190" y2="225" stroke="#6b4423" stroke-width="6" stroke-linecap="round"/>
+  <!-- Joint with smoke -->
+  <rect x="76" y="118" width="14" height="3.5" fill="#fdfbf0" stroke="#1b4332" stroke-width="1" rx="1"/>
+  <circle cx="74" cy="120" r="2" fill="#ff6b35"/>
+  <g fill="#fdfbf0" opacity="0.85">
+    <circle cx="64" cy="108" r="5"/>
+    <circle cx="58" cy="94" r="6"/>
+    <circle cx="62" cy="78" r="5"/>
+  </g>
+</svg>
