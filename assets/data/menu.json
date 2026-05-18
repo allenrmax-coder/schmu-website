@@ -1,0 +1,529 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-05-18",
+  "legend": {
+    "growing": [
+      { "key": "IN", "desc": "Indoor" },
+      { "key": "LD", "desc": "Light Dep" },
+      { "key": "LA", "desc": "Light Assist" },
+      { "key": "GH", "desc": "Greenhouse" },
+      { "key": "OO", "desc": "Organic Outdoor" },
+      { "key": "HOO", "desc": "High Grade Organic Outdoor" },
+      { "key": "LSO", "desc": "Living Soil Outdoor" }
+    ],
+    "tier": [
+      { "key": "E", "desc": "Exotic" },
+      { "key": "T", "desc": "Topshelf" },
+      { "key": "L", "desc": "Lows" }
+    ],
+    "strain": [
+      { "key": "S", "desc": "Sativa" },
+      { "key": "I", "desc": "Indica" },
+      { "key": "H", "desc": "50/50 Hybrid" }
+    ]
+  },
+  "categories": {
+    "flower": {
+      "title": "Flower",
+      "subtitle": "Updated regularly — check announcements for new drops",
+      "footerNotes": [
+        "If no QP is listed then it is LOW stock",
+        "Sativa or Indica may indicate as little as 60% in one direction or more. Use Google, Leafly, AllBud, Seedfinder, or another source for further strain details."
+      ],
+      "sections": [
+        {
+          "title": "Infused Pre-Rolls (0.5g)",
+          "description": "Small pre-rolls infused with kief and concentrates (crumble). Great add-on for pickup.",
+          "items": [
+            { "name": "Runtz Punch", "strain": "H", "detail": "39.70% THC", "prices": [{ "tier": "ea", "amount": "$5" }, { "tier": "10 for", "amount": "$40" }, { "tier": "15 for", "amount": "$55" }] },
+            { "name": "Apple Fritter", "strain": "H", "detail": "37.10% THC", "prices": [{ "tier": "ea", "amount": "$5" }, { "tier": "10 for", "amount": "$40" }, { "tier": "15 for", "amount": "$55" }] },
+            { "name": "Skywalker OG", "strain": "I", "detail": "37.6% THC", "prices": [{ "tier": "ea", "amount": "$5" }, { "tier": "10 for", "amount": "$40" }, { "tier": "15 for", "amount": "$55" }] },
+            { "name": "Grape Ape", "strain": "I", "detail": "42.25% THC", "prices": [{ "tier": "ea", "amount": "$5" }, { "tier": "10 for", "amount": "$40" }, { "tier": "15 for", "amount": "$55" }] },
+            { "name": "Maui Wowie", "strain": "S", "detail": "43.81% THC", "prices": [{ "tier": "ea", "amount": "$5" }, { "tier": "10 for", "amount": "$40" }, { "tier": "15 for", "amount": "$55" }] },
+            { "name": "Pineapple Jack", "strain": "S", "detail": "47.09% THC", "prices": [{ "tier": "ea", "amount": "$5" }, { "tier": "10 for", "amount": "$40" }, { "tier": "15 for", "amount": "$55" }] }
+          ],
+          "note": "Total THC is NOT a proper way to determine potency. You may find a lower-THC product gives stronger effects."
+        },
+        {
+          "title": "House Flower",
+          "items": [
+            { "name": "Blue Dream", "tags": ["OO"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$65" }, { "tier": "qp", "amount": "$220" }] },
+            { "name": "Koko Puff", "tags": ["OO"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$65" }, { "tier": "qp", "amount": "$220" }] },
+            { "name": "Night Terror OG", "tags": ["OO"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$65" }, { "tier": "qp", "amount": "$220" }] },
+            { "name": "Hella Jelly", "tags": ["IN"], "strain": "S", "prices": [{ "tier": "oz", "amount": "$115" }, { "tier": "qp", "amount": "$360" }] },
+            { "name": "Super Boof", "tags": ["IN", "E"], "strain": "S", "prices": [{ "tier": "oz", "amount": "$140" }, { "tier": "qp", "amount": "$470" }] },
+            { "name": "Blue Lobster", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$160" }, { "tier": "qp", "amount": "$520" }] },
+            { "name": "Blueternity", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$160" }, { "tier": "qp", "amount": "$520" }] },
+            { "name": "Sweet N Low", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "MAC Stomper", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "Ice Cream Sundae", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "Ice Cream Candy", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "Sub Zero", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "Watermelon Martini", "tags": ["IN", "E"], "strain": "S", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "Sweet N Low", "detail": "High End", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$190" }, { "tier": "qp", "amount": "$600" }] },
+            { "name": "Wedding Pie", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$210" }, { "tier": "qp", "amount": "$680" }] },
+            { "name": "Blueberry Sugar", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$210" }, { "tier": "qp", "amount": "$680" }] },
+            { "name": "Sour Pine Berry", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$210" }, { "tier": "qp", "amount": "$680" }] }
+          ],
+          "note": "DM us for ADD-ON numbers."
+        },
+        {
+          "title": "Pleasant Effects",
+          "items": [
+            { "name": "Red Hots", "tags": ["IN", "E"], "strain": "S", "prices": [{ "tier": "oz", "amount": "$325" }, { "tier": "2oz", "amount": "$620" }, { "tier": "qp", "amount": "$1,100" }] },
+            { "name": "D.Lish", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$325" }, { "tier": "2oz", "amount": "$620" }, { "tier": "qp", "amount": "$1,100" }] },
+            { "name": "Blue Nerdz", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$325" }, { "tier": "2oz", "amount": "$620" }, { "tier": "qp", "amount": "$1,100" }] },
+            { "name": "Blue Limeade", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$325" }, { "tier": "2oz", "amount": "$620" }, { "tier": "qp", "amount": "$1,100" }] },
+            { "name": "Permanent Marker", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$325" }, { "tier": "2oz", "amount": "$620" }, { "tier": "qp", "amount": "$1,100" }] },
+            { "name": "Grape Gas", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "oz", "amount": "$325" }, { "tier": "2oz", "amount": "$620" }, { "tier": "qp", "amount": "$1,100" }] },
+            { "name": "Gastopia", "detail": "Priv. Reserve", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "oz", "amount": "$340" }, { "tier": "2oz", "amount": "$650" }, { "tier": "qp", "amount": "$1,125" }] }
+          ],
+          "addOn": "90/7g · 170/14g (Gastopia: 100/7g · 180/14g)",
+          "note": "Mix & match by the 7g. All weights come in branded 7g Myron jars."
+        },
+        {
+          "title": "44 North",
+          "description": "VERY LIMITED — limit 7g per order.",
+          "items": [
+            { "name": "GMO", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "7g", "amount": "$60" }] },
+            { "name": "Candied Garlic", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "7g", "amount": "$60" }] },
+            { "name": "MAC1", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "7g", "amount": "$60" }] }
+          ],
+          "addOn": "35/3.5g",
+          "note": "Mix & match by the 3.5g. All weights come in branded 3.5g Myron jars."
+        }
+      ]
+    },
+    "concentrates": {
+      "title": "Concentrates",
+      "subtitle": "Hash, RSO, distillate, kief — looking for Rosin or BHO? Check those pages.",
+      "sections": [
+        {
+          "title": "RSO (Rick Simpson Oil)",
+          "description": "Ultra-Premium RSO in 1g syringe, made with indoor flower. Higher viscosity, no smell. Lab tested 65.93% THC + full-spectrum cannabinoids and terpenes.",
+          "items": [
+            { "name": "1–4g", "prices": [{ "tier": "per g", "amount": "$25" }] },
+            { "name": "5–9g", "prices": [{ "tier": "per g", "amount": "$23" }] },
+            { "name": "10+g", "prices": [{ "tier": "per g", "amount": "$22" }] },
+            { "name": "15+g", "prices": [{ "tier": "per g", "amount": "$21" }] },
+            { "name": "20+g", "prices": [{ "tier": "per g", "amount": "$20" }] }
+          ],
+          "note": "Medical patients DM for discount. We round to the nearest 5 when pricing."
+        },
+        {
+          "title": "Distillate",
+          "description": "CAT3 90%+ THC Distillate. Highest quality all-natural, made from clean trim extract (not converted). Deep gold color.",
+          "items": [
+            { "name": "30ml", "detail": "1 oz", "prices": [{ "tier": "oz", "amount": "$150" }] },
+            { "name": "120ml", "detail": "1 qp", "prices": [{ "tier": "qp", "amount": "$450" }] }
+          ]
+        },
+        {
+          "title": "Kief / Keef",
+          "description": "Fresh kief from indoor hydro — moist, can be pressed into rosin, added onto bowls/Js, etc. RESTOCK IN PROGRESS.",
+          "items": [
+            { "name": "Indoor hydro kief", "prices": [{ "tier": "oz", "amount": "$160" }, { "tier": "qp", "amount": "$480" }] },
+            { "name": "Tier 2 kief", "detail": "Lower grade, mixed strain", "prices": [{ "tier": "oz", "amount": "$100" }, { "tier": "qp", "amount": "$350" }] }
+          ],
+          "addOn": "Indoor: 30/⅛, 50/¼, 90/½  ·  Tier 2: 20/⅛, 35/¼, 60/½"
+        },
+        {
+          "title": "Afghan-Style Cali Pressed Bubble Hash",
+          "description": "High Grade Bubble. Afghani consistency — dark brown, cuts like taffy, shiny. RESTOCK IN PROGRESS (5/17).",
+          "items": [
+            { "name": "High Grade", "prices": [{ "tier": "½", "amount": "$120" }, { "tier": "oz", "amount": "$220" }, { "tier": "2oz", "amount": "$420" }] }
+          ],
+          "addOn": "45/⅛, 70/¼"
+        },
+        {
+          "title": "Cali Unpressed Bubble Hash",
+          "items": [
+            { "name": "Tropicanna Cookies", "strain": "S", "prices": [{ "tier": "½", "amount": "$100" }, { "tier": "oz", "amount": "$170" }, { "tier": "2oz", "amount": "$320" }] }
+          ],
+          "addOn": "35/⅛, 60/¼"
+        },
+        {
+          "title": "Hiker Trash Bubble Hash",
+          "description": "Medical Grade Bubble.",
+          "items": [
+            { "name": "Bill's Blend", "detail": "Peach Pie + Grease Monkey", "strain": "I", "prices": [{ "tier": "½", "amount": "$160" }, { "tier": "oz", "amount": "$280" }, { "tier": "2oz", "amount": "$540" }] },
+            { "name": "Dosi Amnesia", "strain": "H", "prices": [{ "tier": "½", "amount": "$160" }, { "tier": "oz", "amount": "$280" }, { "tier": "2oz", "amount": "$540" }] }
+          ],
+          "addOn": "50/⅛, 90/¼"
+        },
+        {
+          "title": "Afghani Bubble Hash",
+          "description": "Landrace Afghani indica (from naturally occurring Afghani Kush genetics). Lightly pressed, will crumble between fingers. RESTOCK 5/16.",
+          "items": [
+            { "name": "Afghani Bubble", "strain": "I", "prices": [{ "tier": "½", "amount": "$65" }, { "tier": "oz", "amount": "$120" }, { "tier": "qp", "amount": "$360" }] }
+          ],
+          "addOn": "20/⅛, 35/¼"
+        }
+      ]
+    },
+    "rosin": {
+      "title": "Rosin",
+      "subtitle": "Solventless live hash rosin — every tier. House brand is Mellow Marsh Melts unless otherwise noted.",
+      "sections": [
+        {
+          "title": "Love Hash by Alchemy Studios",
+          "description": "Single Source Living Soil — locally made. Pre-packaged in branded 2g buckets.",
+          "items": [
+            { "name": "OMG GMO 90u", "strain": "I", "prices": [{ "tier": "2g", "amount": "$140" }, { "tier": "4g", "amount": "$260" }, { "tier": "6g", "amount": "$380" }] },
+            { "name": "The Pink", "detail": "Runtz × Unknown, 90u", "strain": "H", "prices": [{ "tier": "2g", "amount": "$140" }, { "tier": "4g", "amount": "$260" }, { "tier": "6g", "amount": "$380" }] },
+            { "name": "G-Lish", "detail": "Grape Gas × Delish, 73-90u", "strain": "I", "prices": [{ "tier": "2g", "amount": "$140" }, { "tier": "4g", "amount": "$260" }, { "tier": "6g", "amount": "$380" }] },
+            { "name": "OMG GMO × Kush n Keyz", "detail": "73-90u", "strain": "I", "prices": [{ "tier": "2g", "amount": "$140" }, { "tier": "4g", "amount": "$260" }, { "tier": "6g", "amount": "$380" }] }
+          ],
+          "note": "Two 1g jars available of marked strains. Mix & match while supplies last, or buy for $75."
+        },
+        {
+          "title": "Indoor Burny Terps Live Hash Rosin",
+          "description": "Medical grade, pre-packaged in branded 1g jars.",
+          "items": [
+            { "name": "Trop Sunrise", "strain": "S", "prices": [{ "tier": "g", "amount": "$80" }, { "tier": "2g", "amount": "$150" }, { "tier": "4g", "amount": "$285" }, { "tier": "7g", "amount": "$500" }, { "tier": "14g", "amount": "$925" }] },
+            { "name": "Feijoa Headband", "strain": "S", "prices": [{ "tier": "g", "amount": "$80" }, { "tier": "2g", "amount": "$150" }, { "tier": "4g", "amount": "$285" }, { "tier": "7g", "amount": "$500" }, { "tier": "14g", "amount": "$925" }] }
+          ]
+        },
+        {
+          "title": "Sungrown Burny Terps Live Hash Rosin",
+          "description": "Medical grade, pre-packaged in branded 1g jars.",
+          "items": [
+            { "name": "Papaya", "strain": "I", "prices": [{ "tier": "g", "amount": "$70" }, { "tier": "2g", "amount": "$135" }, { "tier": "4g", "amount": "$260" }, { "tier": "7g", "amount": "$450" }, { "tier": "14g", "amount": "$850" }] },
+            { "name": "BPPZ", "strain": "H", "prices": [{ "tier": "g", "amount": "$70" }, { "tier": "2g", "amount": "$135" }, { "tier": "4g", "amount": "$260" }, { "tier": "7g", "amount": "$450" }, { "tier": "14g", "amount": "$850" }] }
+          ]
+        },
+        {
+          "title": "Misty's Melts — Live Bubble Hash (Full Melt)",
+          "description": "Indoor, 90u, pre-packaged in branded 1g jars. RESTOCK IN PROGRESS.",
+          "items": [
+            { "name": "Misty's Melts Full Melt", "prices": [{ "tier": "g", "amount": "$70" }, { "tier": "2g", "amount": "$130" }, { "tier": "4g", "amount": "$250" }, { "tier": "7g", "amount": "$420" }] }
+          ]
+        },
+        {
+          "title": "Ryder Farms Live Hash Rosin (Sungrown)",
+          "description": "Medical grade, pre-packaged in branded 1g jars.",
+          "items": [
+            { "name": "Frosted Flakes", "strain": "I", "prices": [{ "tier": "g", "amount": "$65" }, { "tier": "4g", "amount": "$225" }, { "tier": "7g", "amount": "$375" }, { "tier": "14g", "amount": "$675" }, { "tier": "oz", "amount": "$1,300" }] },
+            { "name": "Whoopie Pie", "detail": "1 LEFT", "strain": "H", "prices": [{ "tier": "g", "amount": "$65" }, { "tier": "4g", "amount": "$225" }, { "tier": "7g", "amount": "$375" }, { "tier": "14g", "amount": "$675" }, { "tier": "oz", "amount": "$1,300" }] },
+            { "name": "Gold Cash Gold", "strain": "I", "prices": [{ "tier": "g", "amount": "$65" }, { "tier": "4g", "amount": "$225" }, { "tier": "7g", "amount": "$375" }, { "tier": "14g", "amount": "$675" }, { "tier": "oz", "amount": "$1,300" }] },
+            { "name": "Cheetos", "detail": "2 LEFT", "strain": "H", "prices": [{ "tier": "g", "amount": "$65" }, { "tier": "4g", "amount": "$225" }, { "tier": "7g", "amount": "$375" }, { "tier": "14g", "amount": "$675" }, { "tier": "oz", "amount": "$1,300" }] }
+          ]
+        },
+        {
+          "title": "Hiker Trash Live Hash Rosin (Indoor)",
+          "description": "Medical grade.",
+          "items": [
+            { "name": "Banana Pound Cake", "strain": "I", "prices": [{ "tier": "g", "amount": "$50" }, { "tier": "3.5g", "amount": "$160" }, { "tier": "7g", "amount": "$300" }, { "tier": "14g", "amount": "$550" }, { "tier": "oz", "amount": "$1,000" }] },
+            { "name": "Moroccan Peaches", "strain": "S", "prices": [{ "tier": "g", "amount": "$50" }, { "tier": "3.5g", "amount": "$160" }, { "tier": "7g", "amount": "$300" }, { "tier": "14g", "amount": "$550" }, { "tier": "oz", "amount": "$1,000" }] },
+            { "name": "33 Limes", "strain": "S", "prices": [{ "tier": "g", "amount": "$50" }, { "tier": "3.5g", "amount": "$160" }, { "tier": "7g", "amount": "$300" }, { "tier": "14g", "amount": "$550" }, { "tier": "oz", "amount": "$1,000" }] },
+            { "name": "The Grinch", "strain": "H", "prices": [{ "tier": "g", "amount": "$50" }, { "tier": "3.5g", "amount": "$160" }, { "tier": "7g", "amount": "$300" }, { "tier": "14g", "amount": "$550" }, { "tier": "oz", "amount": "$1,000" }] }
+          ]
+        },
+        {
+          "title": "Live Hash Rosin (Special Medical, Indoor)",
+          "items": [
+            { "name": "Forza Berry", "detail": "2-3g LEFT", "strain": "S", "prices": [{ "tier": "g", "amount": "$40" }, { "tier": "3.5g", "amount": "$135" }, { "tier": "7g", "amount": "$270" }, { "tier": "14g", "amount": "$450" }, { "tier": "oz", "amount": "$850" }] },
+            { "name": "Grape Rambutan", "strain": "H", "prices": [{ "tier": "g", "amount": "$40" }, { "tier": "3.5g", "amount": "$135" }, { "tier": "7g", "amount": "$270" }, { "tier": "14g", "amount": "$450" }, { "tier": "oz", "amount": "$850" }] },
+            { "name": "Strawberry Rubber Tree", "strain": "H", "prices": [{ "tier": "g", "amount": "$40" }, { "tier": "3.5g", "amount": "$135" }, { "tier": "7g", "amount": "$270" }, { "tier": "14g", "amount": "$450" }, { "tier": "oz", "amount": "$850" }] },
+            { "name": "Honey Dew", "strain": "S", "prices": [{ "tier": "g", "amount": "$40" }, { "tier": "3.5g", "amount": "$135" }, { "tier": "7g", "amount": "$270" }, { "tier": "14g", "amount": "$450" }, { "tier": "oz", "amount": "$850" }] },
+            { "name": "Golden Lemons", "detail": "<0.7g LEFT", "strain": "I", "prices": [{ "tier": "g", "amount": "$40" }, { "tier": "3.5g", "amount": "$135" }, { "tier": "7g", "amount": "$270" }, { "tier": "14g", "amount": "$450" }, { "tier": "oz", "amount": "$850" }] }
+          ]
+        },
+        {
+          "title": "Live Hash Rosin (Value Tier — high price-to-quality!)",
+          "items": [
+            { "name": "Too Much Lime", "detail": "1-2g LEFT", "strain": "S", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] },
+            { "name": "Nam Wah", "strain": "S", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] },
+            { "name": "Rainbow Guava", "strain": "H", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] },
+            { "name": "Garlic Juice", "strain": "I", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] },
+            { "name": "Lemon Heads", "strain": "S", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] },
+            { "name": "Tropic Thunder", "strain": "S", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] }
+          ]
+        },
+        {
+          "title": "Live Hash Rosin (Living Soil Outdoor)",
+          "items": [
+            { "name": "Government Oasis", "strain": "I", "prices": [{ "tier": "g", "amount": "$30" }, { "tier": "3.5g", "amount": "$90" }, { "tier": "7g", "amount": "$175" }, { "tier": "14g", "amount": "$340" }, { "tier": "oz", "amount": "$625" }] }
+          ]
+        }
+      ]
+    },
+    "bho": {
+      "title": "BHO",
+      "subtitle": "Diamonds, sugar, badder, shatter — house brand is Daily Clouds unless otherwise noted.",
+      "sections": [
+        {
+          "title": "Fresh Frozen Diamonds & Sauce",
+          "description": "Buffet-style: choose any ratio of diamonds (99% THCa) to FF sauce. Standard ratio is 2:1, DM if unsure.",
+          "items": [
+            { "name": "Buffet Diamonds and/or Sauce", "prices": [{ "tier": "½", "amount": "$160" }, { "tier": "oz", "amount": "$280" }, { "tier": "2oz", "amount": "$540" }] }
+          ],
+          "note": "Sauce strains: GMO (I), Gummy Bearz (I), SFV OG (H), Peanut Butter Breath (H), Sour Stomper (S), Grape Cookies (I), Mona Lisa (S) [7g sauce left], Chem Dawg (H)."
+        },
+        {
+          "title": "THCa Isolate Powder (Microdiamonds)",
+          "description": "Powder fallen off our diamonds. Same product as diamonds but in powder form. Great for J's, decarb for food/carts, dabbing, or mixing.",
+          "items": [
+            { "name": "THCa Powder", "prices": [{ "tier": "½", "amount": "$140" }, { "tier": "oz", "amount": "$240" }, { "tier": "2oz", "amount": "$440" }] }
+          ]
+        },
+        {
+          "title": "Fresh Frozen Sugar (Live Resin) — Nug Run",
+          "items": [
+            { "name": "GMO", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Thin Mint Cookies", "detail": "<14g LEFT", "strain": "H", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Hashburger", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Cookie Butter", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Peanut Butter Breath", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] }
+          ]
+        },
+        {
+          "title": "Freshly Cured Sugar — Nug Run",
+          "description": "Made from fresh nugs without being frozen.",
+          "items": [
+            { "name": "Super Runtz", "strain": "H", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] },
+            { "name": "Pandemic", "strain": "H", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] },
+            { "name": "Lemonatti Sherbacio", "strain": "S", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] },
+            { "name": "The Trophy Wife", "strain": "H", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] }
+          ]
+        },
+        {
+          "title": "Pleasant Effects Fresh Frozen Badder (Boutique)",
+          "description": "Live Resin Nug Run. Comes in 1oz branded Pleasant Effects jars; smaller in our in-house jars.",
+          "items": [
+            { "name": "Grape Gas", "strain": "I", "prices": [{ "tier": "½", "amount": "$200" }, { "tier": "oz", "amount": "$390" }, { "tier": "2oz", "amount": "$760" }] },
+            { "name": "Crunchberries", "strain": "I", "prices": [{ "tier": "½", "amount": "$200" }, { "tier": "oz", "amount": "$390" }, { "tier": "2oz", "amount": "$760" }] },
+            { "name": "Red Hotz", "strain": "S", "prices": [{ "tier": "½", "amount": "$200" }, { "tier": "oz", "amount": "$390" }, { "tier": "2oz", "amount": "$760" }] },
+            { "name": "Zangria", "strain": "I", "prices": [{ "tier": "½", "amount": "$200" }, { "tier": "oz", "amount": "$390" }, { "tier": "2oz", "amount": "$760" }] }
+          ]
+        },
+        {
+          "title": "Boutique FF Badder (Live Resin) — Nug Run",
+          "items": [
+            { "name": "GMO", "detail": "Request extra saucy, normal, less saucy, or exact ratios", "strain": "I", "prices": [{ "tier": "½", "amount": "$140" }, { "tier": "oz", "amount": "$260" }, { "tier": "2oz", "amount": "$480" }] }
+          ]
+        },
+        {
+          "title": "Fresh Frozen Badder (Live Resin) — Nug Run",
+          "items": [
+            { "name": "Big Grape", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Desert Lime", "strain": "S", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Grape Cookies", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Hashburger", "detail": "7g LEFT", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Sunset Daquiri", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Watermelon Dream", "strain": "S", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "L'Orange", "strain": "S", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Cookie Dog", "strain": "I", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Purple Diesel", "strain": "S", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] },
+            { "name": "Rainbow Belts", "strain": "H", "prices": [{ "tier": "½", "amount": "$130" }, { "tier": "oz", "amount": "$230" }, { "tier": "2oz", "amount": "$440" }] }
+          ]
+        },
+        {
+          "title": "Freshly Cured Badder — Nug Run",
+          "items": [
+            { "name": "Kosher Kush", "strain": "I", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] },
+            { "name": "Zushi Verde", "strain": "H", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] },
+            { "name": "Permanent Marker", "strain": "I", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$160" }, { "tier": "2oz", "amount": "$300" }] },
+            { "name": "Zushi Verde", "detail": "Light sulfur taste — DISCOUNT", "strain": "H", "prices": [{ "tier": "oz", "amount": "$100" }] },
+            { "name": "Gas Station", "detail": "Light sulfur taste — DISCOUNT", "strain": "H", "prices": [{ "tier": "oz", "amount": "$100" }] }
+          ]
+        },
+        {
+          "title": "Cured Resin Badder — Nug Run",
+          "items": [
+            { "name": "Garlotti", "strain": "I", "prices": [{ "tier": "½", "amount": "$85" }, { "tier": "oz", "amount": "$140" }, { "tier": "2oz", "amount": "$275" }] },
+            { "name": "Bubblegum Runtz", "strain": "H", "prices": [{ "tier": "½", "amount": "$85" }, { "tier": "oz", "amount": "$140" }, { "tier": "2oz", "amount": "$275" }] }
+          ]
+        },
+        {
+          "title": "Shatter — Nug Run",
+          "items": [
+            { "name": "Fruit Punch", "strain": "S", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$150" }, { "tier": "2oz", "amount": "$280" }] },
+            { "name": "Mango Kush", "strain": "I", "prices": [{ "tier": "½", "amount": "$90" }, { "tier": "oz", "amount": "$150" }, { "tier": "2oz", "amount": "$280" }] }
+          ]
+        },
+        {
+          "title": "Add-On Concentrate Prices",
+          "description": "Quick reference for add-on quantities by tier.",
+          "items": [
+            { "name": "Cured Resin Nug Run", "prices": [{ "tier": "3.5g", "amount": "$25" }, { "tier": "7g", "amount": "$45" }] },
+            { "name": "Shatter Nug Run", "prices": [{ "tier": "3.5g", "amount": "$30" }, { "tier": "7g", "amount": "$50" }] },
+            { "name": "Freshly Cured Nug Run", "prices": [{ "tier": "3.5g", "amount": "$30" }, { "tier": "7g", "amount": "$55" }] },
+            { "name": "Fresh Frozen", "prices": [{ "tier": "3.5g", "amount": "$45" }, { "tier": "7g", "amount": "$75" }] },
+            { "name": "Boutique FF Badder", "prices": [{ "tier": "3.5g", "amount": "$50" }, { "tier": "7g", "amount": "$80" }] },
+            { "name": "Diamonds & Sauce", "prices": [{ "tier": "3.5g", "amount": "$55" }, { "tier": "7g", "amount": "$90" }] },
+            { "name": "Pleasant Effects", "prices": [{ "tier": "3.5g", "amount": "$70" }, { "tier": "7g", "amount": "$110" }] }
+          ]
+        }
+      ]
+    },
+    "carts": {
+      "title": "Carts",
+      "subtitle": "Rosin disposables, live resin, and in-house Kind Prophet D&S",
+      "sections": [
+        {
+          "title": "Skunkfoot Farms Rosin Disposable",
+          "description": "Our tastiest and terpiest rosin carts. 0.5g disposables in official box with lanyard (in 1g hardware so may look half full — each cart has 500mg).",
+          "items": [
+            { "name": "Papaya", "strain": "I", "prices": [{ "tier": "1-4", "amount": "$45" }, { "tier": "5-9", "amount": "$42.50" }, { "tier": "10+", "amount": "$40" }] },
+            { "name": "Papaya Belts", "strain": "H", "prices": [{ "tier": "1-4", "amount": "$45" }, { "tier": "5-9", "amount": "$42.50" }, { "tier": "10+", "amount": "$40" }] },
+            { "name": "Strawberry Fizz", "strain": "S", "prices": [{ "tier": "1-4", "amount": "$45" }, { "tier": "5-9", "amount": "$42.50" }, { "tier": "10+", "amount": "$40" }] },
+            { "name": "Scorpion Bowl", "strain": "S", "prices": [{ "tier": "1-4", "amount": "$45" }, { "tier": "5-9", "amount": "$42.50" }, { "tier": "10+", "amount": "$40" }] },
+            { "name": "Bon Bonz", "strain": "H", "prices": [{ "tier": "1-4", "amount": "$45" }, { "tier": "5-9", "amount": "$42.50" }, { "tier": "10+", "amount": "$40" }] }
+          ]
+        },
+        {
+          "title": "GobShop Live Resin",
+          "description": "The famous GobShop — latest offerings.",
+          "items": [
+            { "name": "Caramel Apple Gelato", "strain": "I", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Big Grape", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Banana Papaya", "strain": "I", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Peanut Butter Breath", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Gelato 41", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Lamb's Breath", "strain": "S", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Sky Stomper", "strain": "S", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Thin Mint", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Ice Cream Cookies", "strain": "I", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Extreme OG", "strain": "I", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Desert Lime", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] },
+            { "name": "Slymer", "strain": "S", "prices": [{ "tier": "1-9", "amount": "$40" }, { "tier": "10+", "amount": "$35" }] }
+          ]
+        },
+        {
+          "title": "Kind Prophet Diamonds & Sauce (In-House)",
+          "description": "Created by the CannaProphet team — 100% live resin melted diamonds & sauce. 30% FF HTE sauce + 70% melted diamonds. Vape at MAX 3.0v; 2.0v–3.0v ideal.",
+          "items": [
+            { "name": "Gas Face", "strain": "I", "prices": [{ "tier": "1-9", "amount": "$30" }, { "tier": "10+", "amount": "$25" }, { "tier": "25+", "amount": "$20" }] },
+            { "name": "Orange Cookies", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$30" }, { "tier": "10+", "amount": "$25" }, { "tier": "25+", "amount": "$20" }] },
+            { "name": "Chem Dawg", "strain": "H", "prices": [{ "tier": "1-9", "amount": "$30" }, { "tier": "10+", "amount": "$25" }, { "tier": "25+", "amount": "$20" }] },
+            { "name": "Desert Lime", "strain": "S", "prices": [{ "tier": "1-9", "amount": "$30" }, { "tier": "10+", "amount": "$25" }, { "tier": "25+", "amount": "$20" }] }
+          ],
+          "note": "DM for wholesale pricing."
+        }
+      ]
+    },
+    "edibles": {
+      "title": "Edibles",
+      "subtitle": "Fresh baked goods, rosin gummies, syrups, distillate bars & capsules",
+      "sections": [
+        {
+          "title": "Fresh Baked Mini Brownies",
+          "description": "Fresh baked 3/31. Interior has Ghirardelli 60% chocolate + Heath toffee bits + chopped almonds & melted Lindt 90% dark chocolate. 200mg RSO (~130mg THC) per brownie. RESTOCK AFTER WEEKEND (5/14) — cookies next time.",
+          "items": [
+            { "name": "Mini brownie", "prices": [{ "tier": "1", "amount": "$10" }, { "tier": "3", "amount": "$25" }] }
+          ],
+          "note": "Hand-made by our Prophet Bar Chef. Bi-weekly drops with varying fresh-baked items — requests welcome."
+        },
+        {
+          "title": "Nedibles Rosin Gummies",
+          "description": "25 × 15mg gummy bears per bag (375mg per bag). Hand-made small-batch. Contains kosher gelatin — not vegan/vegetarian.",
+          "items": [
+            { "name": "Lychee", "prices": [{ "tier": "bag", "amount": "$25" }] },
+            { "name": "Banana Cream", "prices": [{ "tier": "bag", "amount": "$25" }] },
+            { "name": "Lime", "prices": [{ "tier": "bag", "amount": "$25" }] },
+            { "name": "Blue Raspberry", "prices": [{ "tier": "bag", "amount": "$25" }] },
+            { "name": "Sour Apple", "detail": "1 LEFT", "prices": [{ "tier": "bag", "amount": "$25" }] }
+          ]
+        },
+        {
+          "title": "The Healing Chefs Rosin Syrups",
+          "description": "HIGH DOSE — vegan and gluten free. 750mg per 4oz flask (187mg/oz, 32mg/5ml). 80% rosin + 20% distillate, water-soluble, organic agave. Mix into drinks or take as a shot.",
+          "items": [
+            { "name": "Espresso", "prices": [{ "tier": "4oz flask", "amount": "$35" }] },
+            { "name": "Coconut", "prices": [{ "tier": "4oz flask", "amount": "$35" }] }
+          ]
+        },
+        {
+          "title": "Cubez Extreme Distillate Gummies",
+          "description": "HIGH DOSE — vegan. Local respected brand. 800mg per bag (8 × 100mg gummies). Half a gummy is often enough — 16+ doses per bag.",
+          "items": [
+            { "name": "Variety pack", "prices": [{ "tier": "bag", "amount": "$25" }] }
+          ]
+        },
+        {
+          "title": "In-House Prophet Bars (Distillate Chocolate)",
+          "description": "HIGH DOSE — vegetarian and gluten free. 1000mg per bar (10 × 100mg pieces). In-house creation by the CannaProphet team.",
+          "items": [
+            { "name": "White Chocolate Cereal", "detail": "Fruity Pebbles", "prices": [{ "tier": "bar", "amount": "$15" }] },
+            { "name": "Milk Chocolate Cereal", "detail": "Cocoa Pebbles", "prices": [{ "tier": "bar", "amount": "$15" }] },
+            { "name": "Cookies N Cream", "detail": "crushed Oreos", "prices": [{ "tier": "bar", "amount": "$15" }] }
+          ]
+        },
+        {
+          "title": "Nedibles Rosin + Coconut Oil Capsules",
+          "description": "Vegan, gluten free, discreet. 300mg per bag (10 × 30mg capsules). Same rosin as the gummies — high quality.",
+          "items": [
+            { "name": "Capsules", "prices": [{ "tier": "1-5", "amount": "$15" }, { "tier": "6-9", "amount": "$13" }, { "tier": "10-14", "amount": "$11" }, { "tier": "15+", "amount": "$10" }] }
+          ],
+          "note": "Rounded to nearest 5."
+        }
+      ]
+    },
+    "specials": {
+      "title": "Specials",
+      "subtitle": "End-of-bag flower & end-of-jar concentrates — discounted leftovers",
+      "sections": [
+        {
+          "title": "End-of-Bag Flower",
+          "items": [
+            { "name": "Gelato X SHAKE", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "4.74g", "amount": "$15" }] },
+            { "name": "GG4", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Chem Dawg SHAKE", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "5g", "amount": "$20" }] },
+            { "name": "Amaretto Sour", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Crush Candy", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "GSC × Zkittlez", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Rainbow Chip", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Secret Cookies", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Government Oasis", "tags": ["LSO"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Super Pine Berry", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Gary Poppins", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "[SUPER] Rainbow Chip", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Space Runtz", "tags": ["IN", "T"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Blueberry Sugar", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Skunk Head SHAKE", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Blue Cherries #20", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Banana Shack", "tags": ["LD"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Zavage", "tags": ["LD"], "strain": "S", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Lollipop", "tags": ["IN"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Gelato X", "tags": ["IN", "T"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Pruno", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Gummies", "tags": ["IN", "E"], "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Super Buff Cherry", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Living Matter's Pancakes", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Cap Junky", "tags": ["IN", "E"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Kush Mints", "tags": ["IN", "T"], "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Sweet Guava", "tags": ["IN", "E"], "strain": "S", "prices": [{ "tier": "ask", "amount": "—" }] }
+          ],
+          "note": "Items marked '—' are pending pricing — DM for current price."
+        },
+        {
+          "title": "End-of-Jar Concentrates",
+          "items": [
+            { "name": "Headband", "detail": "FF HTE", "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Gummy Bearz", "detail": "FF Boutique Badder", "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Applezauce", "detail": "Freshly Cured Badder", "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Lemon Heads #4", "detail": "FF Pleasant Effects Badder", "strain": "S", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Lebanese Blonde", "detail": "Hiker Trash Bubble Hash", "strain": "H", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Grape Stomper Runtz", "detail": "Freshly Cured Badder", "strain": "S", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Slymer", "detail": "FF Badder", "strain": "S", "prices": [{ "tier": "ask", "amount": "—" }] },
+            { "name": "Skywalker Stomper", "detail": "FF Boutique Badder", "strain": "I", "prices": [{ "tier": "ask", "amount": "—" }] }
+          ],
+          "note": "DM for current pricing."
+        }
+      ]
+    },
+    "accessories": {
+      "title": "Accessories",
+      "subtitle": "Rolling trays & extras",
+      "sections": [
+        {
+          "title": "Rolling Trays",
+          "items": [
+            { "name": "Space Cowboy Rolling Tray", "detail": "5.5\" × 7\" mini", "prices": [{ "tier": "ea", "amount": "$10" }] }
+          ]
+        }
+      ]
+    }
+  }
+}

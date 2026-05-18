@@ -13,103 +13,64 @@
     <script src="../assets/js/darkmode.js"></script>
     <script src="../assets/js/verification.js"></script>
 </head>
-<body>
-    <div class="d-flex" id="wrapper">
-        <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">
-                <img src="../assets/img/shmu_round_transparent.png" alt="Shmu emblem" />
-            </div>
-            <div class="sidebar-section-label">Menu</div>
-            <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="flower.html">Flower</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="concentrates.html">Concentrates</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="rosin.html">Rosin</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="bho.html">BHO</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="carts.html">Carts</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="edibles.html">Edibles</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="specials.html">Specials</a>
-            </div>
-        </div>
+<body data-category="concentrates">
+    <div id="wrapper">
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <button class="btn btn-primary" id="sidebarToggle">Menu</button>
-                    <button class="btn btn-outline-secondary ms-2" id="darkModeToggle">Dark Mode</button>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"><span class="navbar-toggler-icon"></span></button>
+                    <a class="navbar-brand" href="../index.html">
+                        <img src="../assets/img/shmu_round_transparent.png" alt="Shmu emblem" />
+                        <span class="navbar-brand-text">SHMU</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../gallery.html">Gallery</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../community.html">Community</a></li>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle active" id="menuDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                                <div class="dropdown-menu" aria-labelledby="menuDropdown">
+                                    <div class="dropdown-header">Products</div>
+                                    <a class="dropdown-item" href="flower.html">Flower</a>
+                                    <a class="dropdown-item active" href="concentrates.html">Concentrates</a>
+                                    <a class="dropdown-item" href="rosin.html">Rosin</a>
+                                    <a class="dropdown-item" href="bho.html">BHO</a>
+                                    <a class="dropdown-item" href="carts.html">Carts</a>
+                                    <a class="dropdown-item" href="edibles.html">Edibles</a>
+                                    <a class="dropdown-item" href="specials.html">Specials</a>
+                                    <a class="dropdown-item" href="accessories.html">Accessories</a>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="https://shmuthecannaprophet.com/gallery/" target="_blank" rel="noopener">Gallery</a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://shmuthecannaprophet.com/mybb/" target="_blank" rel="noopener">Community</a></li>
                             <li class="nav-item"><a class="nav-link" href="../announcements.html">Announcements</a></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">Contact</a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="https://t.me/shmuthecannaprophet" target="_blank">Main Telegram</a>
+                                <a class="nav-link dropdown-toggle" id="contactDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="contactDropdown">
+                                    <a class="dropdown-item" href="https://t.me/shmuthecannaprophet" target="_blank" rel="noopener">Main Telegram</a>
                                     <a class="dropdown-item" href="mailto:shmu@shmuthecannaprophet.com">Main Email</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://t.me/somuchguala21" target="_blank">General Manager</a>
-                                    <a class="dropdown-item" href="https://t.me/cannacam420" target="_blank">Sales Manager</a>
+                                    <a class="dropdown-item" href="https://t.me/somuchguala21" target="_blank" rel="noopener">General Manager</a>
+                                    <a class="dropdown-item" href="https://t.me/cannacam420" target="_blank" rel="noopener">Sales Manager</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://signal.me/#eu/69vs4yBJVlFLkDdItViVK-9OfVjF9jSCcQD2yyIJr19NPF3KSQFAH6oNxHPXYKQB" target="_blank">Backup Signal</a>
+                                    <a class="dropdown-item" href="https://signal.me/#eu/69vs4yBJVlFLkDdItViVK-9OfVjF9jSCcQD2yyIJr19NPF3KSQFAH6oNxHPXYKQB" target="_blank" rel="noopener">Backup Signal</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="tel:267-900-6604">267-900-6604</a>
+                                    <a class="dropdown-item" href="tel:267-900-6604">Phone Orders<br>267-900-6604</a>
                                 </div>
                             </li>
                         </ul>
+                        <button class="btn btn-outline-secondary ms-lg-3 mt-2 mt-lg-0" id="darkModeToggle">Theme</button>
                     </div>
                 </div>
             </nav>
             <div class="container-fluid">
-                <p><img src="../assets/img/shmu_logo.png" class="page-logo-img" alt="Shmu logo" /></p>
-                <h1 class="mt-4">Concentrates</h1>
-                <p class="small">Hash, RSO, and unpressed material</p>
+                <img src="../assets/img/shmu_logo.png" class="page-logo-img" alt="Shmu The Cannaprophet" />
+                <h1 class="mt-4" id="page-title">Concentrates</h1>
+                <p class="small" id="page-subtitle">Loading…</p>
 
-                <div class="menu-section">
-                    <h3>RSO (Rick Simpson Oil)</h3>
-                    <table class="menu-table">
-                        <tr><td>Ultra-Premium RSO (1g syringe) — 1–4g</td><td>25/g</td></tr>
-                        <tr><td>5–9g</td><td>23/g</td></tr>
-                        <tr><td>10+g</td><td>22/g</td></tr>
-                        <tr><td>15+g</td><td>21/g</td></tr>
-                        <tr><td>20+g</td><td>20/g</td></tr>
-                    </table>
-                    <div class="menu-section-note">Made with indoor flower, higher viscosity, no smell. Lab tested 65.93% THC + full-spectrum cannabinoids and terpenes. Medical patients DM for discount. We round to the nearest 5 when pricing.</div>
-                </div>
-
-                <div class="menu-section">
-                    <h3>Hiker Trash Bubble Hash</h3>
-                    <table class="menu-table">
-                        <tr><td>Medical Grade Bubble — Lemon MAC <span class="strain-tag">S</span></td><td>50/eighth · 90/quarter · 160/half · 280/oz · 540/2oz</td></tr>
-                        <tr><td>Wedding Pie <span class="strain-tag">I</span></td><td>50/eighth · 90/quarter · 160/half · 280/oz · 540/2oz</td></tr>
-                        <tr><td>Moroccan Peaches <span class="strain-tag">S</span></td><td>50/eighth · 90/quarter · 160/half · 280/oz · 540/2oz</td></tr>
-                    </table>
-                </div>
-
-                <div class="menu-section">
-                    <h3>Afghan-Style Cali Pressed Bubble Hash</h3>
-                    <table class="menu-table">
-                        <tr><td>High Grade Bubble — Rainbow Guava <span class="strain-tag">I</span></td><td>45/eighth · 70/quarter · 120/half · 220/oz · 420/2oz</td></tr>
-                        <tr><td>Melonade <span class="strain-tag">S</span></td><td>45/eighth · 70/quarter · 120/half · 220/oz · 420/2oz</td></tr>
-                        <tr><td>Haze <span class="strain-tag">S</span></td><td>45/eighth · 70/quarter · 120/half · 220/oz · 420/2oz</td></tr>
-                    </table>
-                    <div class="menu-section-note">Afghani consistency: dark brown, cuts like taffy, shiny.</div>
-                </div>
-
-                <div class="menu-section">
-                    <h3>Cali Unpressed Hash</h3>
-                    <table class="menu-table">
-                        <tr><td>Gelato Cookies <span class="strain-tag">H</span></td><td>Ask for current pricing</td></tr>
-                        <tr><td>Tropicanna Cookies <span class="strain-tag">S</span></td><td>Ask for current pricing</td></tr>
-                        <tr><td>London Pound Cake <span class="strain-tag">I</span></td><td>Ask for current pricing</td></tr>
-                        <tr><td>Mousse Hash <span class="strain-tag">H</span></td><td>Ask for current pricing</td></tr>
-                    </table>
-                </div>
-
-                <p style="color: var(--text-muted); font-size: 13px; margin-top: 24px;">
-                    Strain tags: <span class="strain-tag">S</span> Sativa · <span class="strain-tag">I</span> Indica · <span class="strain-tag">H</span> Hybrid
-                </p>
+                <div id="menu-sections"></div>
+                <div id="menu-footer-notes"></div>
+                <div id="strain-legend"></div>
 
                 <footer class="site-footer">
                     Shmu The Cannaprophet · <a href="../index.html">Home</a> · <a href="../announcements.html">Announcements</a>
@@ -118,6 +79,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/menu-render.js"></script>
+    <script>ShmuMenu.render('concentrates', { assetPath: '../assets/' });</script>
 </body>
 </html>

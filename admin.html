@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Admin — Shmu The Cannaprophet</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%231b4332'/><path d='M50 18 C 50 32, 56 40, 68 42 C 60 44, 56 48, 56 56 C 64 50, 72 50, 80 56 C 72 58, 66 62, 62 72 C 56 64, 52 62, 50 60 C 48 62, 44 64, 38 72 C 34 62, 28 58, 20 56 C 28 50, 36 50, 44 56 C 44 48, 40 44, 32 42 C 44 40, 50 32, 50 18 Z' fill='%2374c69d'/><circle cx='50' cy='62' r='3' fill='%23d4a843'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="assets/css/site.css" rel="stylesheet" />
+    <style>
+        /* ===== Admin-specific styles ===== */
+        body { background: #9060BC !important; background-image: none !important; }
+
+        .admin-shell {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 20px 80px;
+            color: var(--color-cream);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 22px;
+            background-color: #14101f;
+            border: 2px solid var(--color-navy);
+            border-radius: var(--radius-md);
+            margin-bottom: 18px;
+            color: var(--color-cream);
+        }
+        .admin-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin: 0;
+            color: var(--color-green-bright);
+            letter-spacing: 0.02em;
+        }
+        .admin-title small {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--color-purple-light);
+            margin-left: 8px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        .admin-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font-display);
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .admin-status.live { background: rgba(168, 125, 212, 0.18); color: var(--color-purple-light); }
+        .admin-status.preview { background: rgba(121, 222, 83, 0.18); color: var(--color-green-bright); }
+        .admin-status.dirty { background: rgba(241, 141, 52, 0.22); color: var(--color-orange-soft); }
+        .admin-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+        .admin-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn {
+            background-color: var(--color-cream);
+            border: 2px solid var(--color-navy);
+            color: var(--color-navy);
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 2px 0 var(--color-navy);
+        }
+        .admin-btn:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--color-navy); }
+        .admin-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--color-navy); }
+        .admin-btn.primary { background-color: var(--color-green); }
+        .admin-btn.danger { background-color: var(--color-orange); color: var(--color-cream); }
+        .admin-btn.muted { background-color: transparent; border-color: var(--color-purple-light); color: var(--color-purple-light); box-shadow: none; }
+
+        .admin-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            padding: 8px;
+            background-color: rgba(20, 16, 31, 0.6);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(168, 125, 212, 0.25);
+        }
+        .admin-tab {
+            background: transparent;
+            border: none;
+            color: var(--color-purple-light);
+            font-family: var(--font-display);
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .admin-tab:hover { background-color: rgba(121, 222, 83, 0.10); color: var(--color-green-bright); }
+        .admin-tab.active {
+            background-color: var(--color-green);
+            color: var(--color-navy);
+        }
+
+        .admin-section-card {
+            background-color: var(--color-cream);
+            border: 3px solid var(--color-navy);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            color: var(--color-navy);
+            box-shadow: var(--shadow-card);
+        }
+        .admin-section-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--color-navy);
+            margin: 0 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .admin-section-meta {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        @media (min-width: 720px) {
+            .admin-section-meta { grid-template-columns: 1fr 1fr; }
+        }
+        .admin-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .admin-field label {
+            font-family: var(--font-display);
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--color-purple-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .admin-input,
+        .admin-textarea,
+        .admin-select {
+            width: 100%;
+            padding: 7px 10px;
+            background-color: #fff;
+            border: 1.5px solid rgba(9, 46, 109, 0.4);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-navy);
+            font-weight: 500;
+        }
+        .admin-input:focus,
+        .admin-textarea:focus,
+        .admin-select:focus {
+            outline: none;
+            border-color: var(--color-green-deep);
+            box-shadow: 0 0 0 3px rgba(121, 222, 83, 0.2);
+        }
+        .admin-textarea {
+            min-height: 50px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .admin-items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 8px;
+        }
+        .admin-items-table thead th {
+            font-family: var(--font-display);
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--color-purple-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: left;
+            padding: 6px 4px;
+            border-bottom: 1px solid rgba(9, 46, 109, 0.18);
+        }
+        .admin-items-table td {
+            padding: 6px 4px;
+            vertical-align: top;
+        }
+        .admin-item-row {
+            border-bottom: 1px dashed rgba(9, 46, 109, 0.15);
+        }
+        .admin-item-row:last-child { border-bottom: none; }
+        .admin-item-row td.name-col { width: 30%; min-width: 140px; }
+        .admin-item-row td.strain-col { width: 70px; }
+        .admin-item-row td.detail-col { width: 22%; min-width: 100px; }
+        .admin-item-row td.prices-col { min-width: 240px; }
+        .admin-item-row td.actions-col { width: 60px; text-align: right; }
+
+        .admin-prices-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .admin-price-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: rgba(168, 125, 212, 0.10);
+            border-radius: 4px;
+            padding: 2px;
+        }
+        .admin-price-row .admin-input { width: 70px; font-size: 12px; padding: 5px 7px; }
+        .admin-price-row .admin-input.tier { width: 70px; }
+        .admin-price-row .admin-input.amount { width: 80px; }
+
+        .icon-btn {
+            background: transparent;
+            border: 1.5px solid rgba(9, 46, 109, 0.3);
+            color: var(--color-navy);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 3px 7px;
+            transition: all var(--transition);
+            line-height: 1;
+        }
+        .icon-btn:hover { background-color: rgba(9, 46, 109, 0.08); }
+        .icon-btn.danger { color: var(--color-orange); border-color: rgba(241, 141, 52, 0.4); }
+        .icon-btn.danger:hover { background-color: rgba(241, 141, 52, 0.12); }
+        .icon-btn.small { font-size: 11px; padding: 2px 6px; }
+
+        .admin-section-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(9, 46, 109, 0.12);
+            flex-wrap: wrap;
+        }
+
+        .admin-floating {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            background-color: #14101f;
+            border: 2px solid var(--color-navy);
+            border-radius: var(--radius-pill);
+            padding: 8px 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            max-width: calc(100% - 32px);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .admin-login {
+            max-width: 380px;
+            margin: 80px auto;
+            background: var(--color-cream);
+            border: 3px solid var(--color-navy);
+            border-radius: var(--radius-md);
+            padding: 28px 26px;
+            color: var(--color-navy);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3), 0 4px 0 var(--color-navy);
+        }
+        .admin-login h2 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--color-navy);
+            margin: 0 0 12px;
+            text-align: center;
+        }
+        .admin-login p {
+            text-align: center;
+            font-size: 13px;
+            color: var(--color-navy-soft);
+            margin: 0 0 16px;
+        }
+        .admin-login input {
+            width: 100%;
+            padding: 11px 14px;
+            background-color: #fff;
+            border: 2px solid var(--color-navy);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-navy);
+            outline: none;
+        }
+        .admin-login input:focus {
+            border-color: var(--color-green-deep);
+            box-shadow: 0 0 0 3px rgba(121, 222, 83, 0.2);
+        }
+        .admin-login button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 11px 16px;
+            background-color: var(--color-green);
+            border: 2px solid var(--color-navy);
+            border-radius: var(--radius-sm);
+            color: var(--color-navy);
+            font-family: var(--font-display);
+            font-size: 13.5px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 3px 0 var(--color-navy);
+            transition: all var(--transition);
+        }
+        .admin-login button:hover {
+            background-color: var(--color-green-bright);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 0 var(--color-navy);
+        }
+        .admin-login-error {
+            color: var(--color-orange);
+            text-align: center;
+            margin-top: 10px;
+            font-size: 12.5px;
+            font-weight: 600;
+            min-height: 16px;
+        }
+
+        .admin-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color-navy);
+            color: var(--color-cream);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            z-index: 300;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .admin-toast.show { opacity: 1; transform: translateY(0); }
+        .admin-toast.success { background: var(--color-green-deep); color: #fff; }
+        .admin-toast.error { background: var(--color-orange); color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="admin-shell" id="admin-login-screen" style="display:none">
+        <div class="admin-login">
+            <h2>Shmu Admin</h2>
+            <p>Enter admin password to edit menus.</p>
+            <form id="admin-login-form" autocomplete="off">
+                <input type="password" id="admin-login-pwd" placeholder="Admin password" autofocus />
+                <button type="submit">Unlock Admin</button>
+                <div class="admin-login-error" id="admin-login-error"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="admin-shell" id="admin-app" style="display:none">
+        <div class="admin-header">
+            <div>
+                <h1 class="admin-title">SHMU <small>Admin</small></h1>
+                <div id="admin-status-line" style="margin-top:6px"><span class="admin-status live" id="admin-status">Live data</span></div>
+            </div>
+            <div class="admin-actions">
+                <button class="admin-btn muted" id="btn-view-site">View Site</button>
+                <button class="admin-btn muted" id="btn-logout">Log out</button>
+            </div>
+        </div>
+
+        <div class="admin-tabs" id="admin-tabs"></div>
+
+        <div id="admin-category-editor"></div>
+
+        <div class="admin-floating">
+            <button class="admin-btn primary" id="btn-save-preview">Save Preview</button>
+            <button class="admin-btn" id="btn-download">Download JSON</button>
+            <button class="admin-btn muted" id="btn-discard">Discard Changes</button>
+            <button class="admin-btn danger" id="btn-clear-preview">Clear Preview</button>
+        </div>
+    </div>
+
+    <div class="admin-toast" id="admin-toast"></div>
+
+    <script>
+    // ============================================
+    // SHMU ADMIN
+    // Password (SHA-256 of "shmuadmin"):
+    // c14a37acf71a72d095991fc4a78ae46992532cfbeb1cc304ae206bf5b06e662e
+    // ============================================
+    (function () {
+        'use strict';
+
+        var ADMIN_HASH = 'c14a37acf71a72d095991fc4a78ae46992532cfbeb1cc304ae206bf5b06e662e';
+        var SESSION_KEY = 'shmu_admin_session';
+        var DATA_KEY = 'shmu_menu_override';
+
+        var liveData = null;       // unmodified from server
+        var workingData = null;    // current in-memory edits
+        var activeCategory = 'flower';
+        var hasUnsavedChanges = false;
+
+        async function sha256(text) {
+            var buf = new TextEncoder().encode(text);
+            var hash = await crypto.subtle.digest('SHA-256', buf);
+            return Array.from(new Uint8Array(hash)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
+        }
+
+        function showToast(msg, type) {
+            var t = document.getElementById('admin-toast');
+            t.textContent = msg;
+            t.className = 'admin-toast show' + (type ? ' ' + type : '');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(function() { t.classList.remove('show'); }, 2400);
+        }
+
+        // ---------- AUTH ----------
+        function isAuthenticated() {
+            return sessionStorage.getItem(SESSION_KEY) === '1';
+        }
+
+        function showLogin() {
+            document.getElementById('admin-login-screen').style.display = 'block';
+            document.getElementById('admin-app').style.display = 'none';
+        }
+
+        function showApp() {
+            document.getElementById('admin-login-screen').style.display = 'none';
+            document.getElementById('admin-app').style.display = 'block';
+        }
+
+        document.getElementById('admin-login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var pwd = document.getElementById('admin-login-pwd').value.trim();
+            var errEl = document.getElementById('admin-login-error');
+            errEl.textContent = '';
+            if (!pwd) return;
+            try {
+                var h = await sha256(pwd);
+                if (h === ADMIN_HASH) {
+                    sessionStorage.setItem(SESSION_KEY, '1');
+                    showApp();
+                    init();
+                } else {
+                    errEl.textContent = 'Incorrect password.';
+                    document.getElementById('admin-login-pwd').value = '';
+                }
+            } catch (err) {
+                errEl.textContent = 'Browser does not support hashing.';
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', function() {
+            if (hasUnsavedChanges && !confirm('You have unsaved changes. Log out anyway?')) return;
+            sessionStorage.removeItem(SESSION_KEY);
+            location.reload();
+        });
+
+        document.getElementById('btn-view-site').addEventListener('click', function() {
+            window.open('index.html', '_blank');
+        });
+
+        // ---------- DATA ----------
+        function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+        function hasOverride() {
+            return !!localStorage.getItem(DATA_KEY);
+        }
+
+        function loadLive() {
+            return fetch('assets/data/menu.json', { cache: 'no-cache' })
+                .then(function(r) {
+                    if (!r.ok) throw new Error('Failed to load menu.json');
+                    return r.json();
+                });
+        }
+
+        function loadOverride() {
+            try {
+                var raw = localStorage.getItem(DATA_KEY);
+                if (!raw) return null;
+                return JSON.parse(raw);
+            } catch (e) { return null; }
+        }
+
+        function updateStatus() {
+            var el = document.getElementById('admin-status');
+            if (hasUnsavedChanges) {
+                el.className = 'admin-status dirty';
+                el.textContent = 'Unsaved changes';
+            } else if (hasOverride()) {
+                el.className = 'admin-status preview';
+                el.textContent = 'Preview active';
+            } else {
+                el.className = 'admin-status live';
+                el.textContent = 'Live data';
+            }
+        }
+
+        function markDirty() {
+            hasUnsavedChanges = true;
+            updateStatus();
+        }
+
+        // ---------- RENDERER ----------
+        function renderTabs() {
+            var tabsEl = document.getElementById('admin-tabs');
+            var cats = Object.keys(workingData.categories || {});
+            tabsEl.innerHTML = cats.map(function(id) {
+                var label = workingData.categories[id].title || id;
+                var cls = id === activeCategory ? 'admin-tab active' : 'admin-tab';
+                return '<button class="' + cls + '" data-cat="' + id + '">' + escapeHtml(label) + '</button>';
+            }).join('');
+            tabsEl.querySelectorAll('.admin-tab').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    activeCategory = btn.getAttribute('data-cat');
+                    renderTabs();
+                    renderEditor();
+                });
+            });
+        }
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function el(tag, props, children) {
+            var e = document.createElement(tag);
+            if (props) Object.keys(props).forEach(function(k) {
+                if (k === 'className') e.className = props[k];
+                else if (k === 'on') Object.keys(props[k]).forEach(function(ev){ e.addEventListener(ev, props[k][ev]); });
+                else if (k === 'html') e.innerHTML = props[k];
+                else e.setAttribute(k, props[k]);
+            });
+            if (children) (Array.isArray(children) ? children : [children]).forEach(function(c) {
+                if (c == null) return;
+                if (typeof c === 'string') e.appendChild(document.createTextNode(c));
+                else e.appendChild(c);
+            });
+            return e;
+        }
+
+        function renderEditor() {
+            var container = document.getElementById('admin-category-editor');
+            container.innerHTML = '';
+            var category = workingData.categories[activeCategory];
+            if (!category) return;
+
+            // Category-level metadata
+            var meta = el('div', { className: 'admin-section-card' }, [
+                el('h3', null, 'Category info'),
+                el('div', { className: 'admin-section-meta' }, [
+                    field('Title', category.title, function(v) { category.title = v; markDirty(); }),
+                    field('Subtitle', category.subtitle, function(v) { category.subtitle = v; markDirty(); })
+                ])
+            ]);
+            container.appendChild(meta);
+
+            // Sections
+            (category.sections || []).forEach(function(section, sIdx) {
+                container.appendChild(renderSectionEditor(category, section, sIdx));
+            });
+
+            // Add section button
+            var addBtn = el('button', {
+                className: 'admin-btn primary',
+                on: { click: function() {
+                    if (!category.sections) category.sections = [];
+                    category.sections.push({ title: 'New Section', items: [] });
+                    markDirty();
+                    renderEditor();
+                }}
+            }, '+ Add Section');
+            container.appendChild(addBtn);
+        }
+
+        function field(label, value, onChange, type) {
+            var input = el('input', {
+                className: 'admin-input',
+                type: type || 'text',
+                value: value == null ? '' : value
+            });
+            input.addEventListener('input', function() { onChange(input.value); });
+            return el('div', { className: 'admin-field' }, [
+                el('label', null, label),
+                input
+            ]);
+        }
+
+        function textareaField(label, value, onChange) {
+            var ta = el('textarea', { className: 'admin-textarea' });
+            ta.value = value || '';
+            ta.addEventListener('input', function() { onChange(ta.value); });
+            return el('div', { className: 'admin-field' }, [
+                el('label', null, label),
+                ta
+            ]);
+        }
+
+        function renderSectionEditor(category, section, sIdx) {
+            var card = el('div', { className: 'admin-section-card' });
+            var titleEl = el('h3', null, [section.title || 'Untitled section']);
+
+            var moveUp = el('button', {
+                className: 'icon-btn small',
+                title: 'Move up',
+                on: { click: function() {
+                    if (sIdx === 0) return;
+                    var tmp = category.sections[sIdx - 1];
+                    category.sections[sIdx - 1] = category.sections[sIdx];
+                    category.sections[sIdx] = tmp;
+                    markDirty(); renderEditor();
+                }}
+            }, '↑');
+            var moveDown = el('button', {
+                className: 'icon-btn small',
+                title: 'Move down',
+                on: { click: function() {
+                    if (sIdx >= category.sections.length - 1) return;
+                    var tmp = category.sections[sIdx + 1];
+                    category.sections[sIdx + 1] = category.sections[sIdx];
+                    category.sections[sIdx] = tmp;
+                    markDirty(); renderEditor();
+                }}
+            }, '↓');
+            var del = el('button', {
+                className: 'icon-btn small danger',
+                title: 'Delete section',
+                on: { click: function() {
+                    if (!confirm('Delete this section? Items inside will also be deleted.')) return;
+                    category.sections.splice(sIdx, 1);
+                    markDirty(); renderEditor();
+                }}
+            }, 'Delete');
+
+            var controls = el('div', { style: 'display:inline-flex; gap:4px; margin-left:auto' }, [moveUp, moveDown, del]);
+            titleEl.appendChild(controls);
+            card.appendChild(titleEl);
+
+            // Title + Description fields
+            card.appendChild(el('div', { className: 'admin-section-meta' }, [
+                field('Section title', section.title, function(v) { section.title = v; titleEl.firstChild.textContent = v || 'Untitled section'; markDirty(); }),
+                field('Add-on text (optional)', section.addOn, function(v) { section.addOn = v; markDirty(); })
+            ]));
+            card.appendChild(textareaField('Description (optional)', section.description, function(v) { section.description = v; markDirty(); }));
+            card.appendChild(textareaField('Note (shown in bottom box)', section.note, function(v) { section.note = v; markDirty(); }));
+
+            // Items table
+            var table = el('table', { className: 'admin-items-table' });
+            table.appendChild(el('thead', null, el('tr', null, [
+                el('th', null, 'Name'),
+                el('th', null, 'Strain'),
+                el('th', null, 'Detail'),
+                el('th', null, 'Prices (tier / amount)'),
+                el('th', null, '')
+            ])));
+            var tbody = el('tbody');
+            (section.items || []).forEach(function(item, iIdx) {
+                tbody.appendChild(renderItemRow(section, item, iIdx));
+            });
+            table.appendChild(tbody);
+            card.appendChild(table);
+
+            // Add item / Add price buttons
+            card.appendChild(el('div', { className: 'admin-section-footer' }, [
+                el('button', {
+                    className: 'admin-btn',
+                    on: { click: function() {
+                        if (!section.items) section.items = [];
+                        section.items.push({ name: 'New item', prices: [] });
+                        markDirty();
+                        renderEditor();
+                    }}
+                }, '+ Add Item')
+            ]));
+
+            return card;
+        }
+
+        function renderItemRow(section, item, iIdx) {
+            var tr = el('tr', { className: 'admin-item-row' });
+
+            var nameInput = el('input', { className: 'admin-input', type: 'text', value: item.name || '' });
+            nameInput.addEventListener('input', function() { item.name = nameInput.value; markDirty(); });
+            tr.appendChild(el('td', { className: 'name-col' }, nameInput));
+
+            var strainSel = el('select', { className: 'admin-select' });
+            ['', 'S', 'I', 'H'].forEach(function(opt) {
+                var o = el('option', null, opt || '—');
+                o.value = opt;
+                if ((item.strain || '') === opt) o.selected = true;
+                strainSel.appendChild(o);
+            });
+            strainSel.addEventListener('change', function() { item.strain = strainSel.value || undefined; markDirty(); });
+            tr.appendChild(el('td', { className: 'strain-col' }, strainSel));
+
+            var detailInput = el('input', { className: 'admin-input', type: 'text', value: item.detail || '' });
+            detailInput.addEventListener('input', function() { item.detail = detailInput.value || undefined; markDirty(); });
+            tr.appendChild(el('td', { className: 'detail-col' }, detailInput));
+
+            // Prices
+            var pricesWrap = el('div', { className: 'admin-prices-list' });
+            (item.prices || []).forEach(function(price, pIdx) {
+                var row = el('div', { className: 'admin-price-row' });
+                var tier = el('input', { className: 'admin-input tier', type: 'text', placeholder: 'tier', value: price.tier || '' });
+                var amt = el('input', { className: 'admin-input amount', type: 'text', placeholder: 'amount', value: price.amount || '' });
+                tier.addEventListener('input', function() { price.tier = tier.value; markDirty(); });
+                amt.addEventListener('input', function() { price.amount = amt.value; markDirty(); });
+                var rm = el('button', {
+                    className: 'icon-btn danger small',
+                    on: { click: function() {
+                        item.prices.splice(pIdx, 1);
+                        markDirty();
+                        renderEditor();
+                    }}
+                }, '×');
+                row.appendChild(tier);
+                row.appendChild(amt);
+                row.appendChild(rm);
+                pricesWrap.appendChild(row);
+            });
+            var addPriceBtn = el('button', {
+                className: 'icon-btn small',
+                on: { click: function() {
+                    if (!item.prices) item.prices = [];
+                    item.prices.push({ tier: '', amount: '' });
+                    markDirty();
+                    renderEditor();
+                }}
+            }, '+ Price');
+            pricesWrap.appendChild(addPriceBtn);
+            tr.appendChild(el('td', { className: 'prices-col' }, pricesWrap));
+
+            var delBtn = el('button', {
+                className: 'icon-btn danger small',
+                on: { click: function() {
+                    if (!confirm('Delete "' + (item.name || 'item') + '"?')) return;
+                    section.items.splice(iIdx, 1);
+                    markDirty();
+                    renderEditor();
+                }}
+            }, 'Delete');
+            tr.appendChild(el('td', { className: 'actions-col' }, delBtn));
+
+            return tr;
+        }
+
+        // ---------- ACTIONS ----------
+        document.getElementById('btn-save-preview').addEventListener('click', function() {
+            try {
+                localStorage.setItem(DATA_KEY, JSON.stringify(workingData));
+                hasUnsavedChanges = false;
+                updateStatus();
+                showToast('Preview saved — site will show your changes', 'success');
+            } catch (e) {
+                showToast('Failed to save: ' + e.message, 'error');
+            }
+        });
+
+        document.getElementById('btn-discard').addEventListener('click', function() {
+            if (!hasUnsavedChanges) {
+                showToast('No unsaved changes');
+                return;
+            }
+            if (!confirm('Discard all unsaved changes?')) return;
+            workingData = deepClone(loadOverride() || liveData);
+            hasUnsavedChanges = false;
+            updateStatus();
+            renderEditor();
+            showToast('Changes discarded');
+        });
+
+        document.getElementById('btn-clear-preview').addEventListener('click', function() {
+            if (!confirm('Remove the preview override and go back to live data?')) return;
+            localStorage.removeItem(DATA_KEY);
+            workingData = deepClone(liveData);
+            hasUnsavedChanges = false;
+            updateStatus();
+            renderEditor();
+            showToast('Preview cleared — site shows live data', 'success');
+        });
+
+        document.getElementById('btn-download').addEventListener('click', function() {
+            try {
+                workingData.lastUpdated = new Date().toISOString().slice(0, 10);
+                var json = JSON.stringify(workingData, null, 2);
+                var blob = new Blob([json], { type: 'application/json' });
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'menu.json';
+                a.click();
+                showToast('Downloaded menu.json — replace assets/data/menu.json on server', 'success');
+            } catch (e) {
+                showToast('Download failed: ' + e.message, 'error');
+            }
+        });
+
+        // ---------- INIT ----------
+        function init() {
+            loadLive()
+                .then(function(data) {
+                    liveData = data;
+                    var override = loadOverride();
+                    workingData = deepClone(override || liveData);
+                    hasUnsavedChanges = false;
+                    updateStatus();
+                    renderTabs();
+                    renderEditor();
+                })
+                .catch(function(err) {
+                    showToast('Failed to load menu data: ' + err.message, 'error');
+                });
+        }
+
+        window.addEventListener('beforeunload', function(e) {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Start
+        if (isAuthenticated()) {
+            showApp();
+            init();
+        } else {
+            showLogin();
+        }
+    })();
+    </script>
+</body>
+</html>
