@@ -282,11 +282,11 @@ body.dark-mode h2.section-title {
 .menu-hero-text h1.mt-4 { margin-top: 8px !important; }
 
 .menu-hero-character {
-    width: 230px;
-    max-width: 38%;
+    width: 150px;
+    max-width: 25%;
     height: auto;
     margin-left: auto;
-    filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.40));
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.40));
     transition: transform var(--transition-slow);
     flex-shrink: 0;
 }
@@ -299,8 +299,8 @@ body.dark-mode h2.section-title {
     .menu-hero { gap: 14px; justify-content: center; text-align: center; }
     .menu-hero-text { flex: 1 1 100%; }
     .menu-hero-character {
-        width: 180px;
-        max-width: 55%;
+        width: 120px;
+        max-width: 35%;
         margin: 0 auto;
         order: -1;
     }

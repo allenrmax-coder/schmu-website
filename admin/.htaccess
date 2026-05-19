@@ -1,0 +1,36 @@
+# =====================================================================
+# Admin folder — server-level Basic Auth
+# Apache will prompt for username/password BEFORE serving any file here,
+# so the admin page is protected even if someone knows the URL.
+#
+# Username: admin
+# Password: B6CpsYvuoBOmuohEJ0OU   (same as the JS gate inside the page)
+#
+# To use this on Apache hosting:
+#   1. Make sure mod_authn_file and mod_auth_basic are enabled
+#      (almost always on by default on shared hosting).
+#   2. Edit AuthUserFile below to an absolute path that points at the
+#      .htpasswd file in this folder.  Example for cPanel hosting:
+#        AuthUserFile "/home/USERNAME/public_html/admin/.htpasswd"
+#      Replace USERNAME with your account name.
+#   3. Upload .htaccess and .htpasswd to /admin/ on the server.
+#
+# To rotate the password, generate a new hash and replace the line in
+# .htpasswd:
+#   htpasswd -nB admin NEW_PASSWORD     (bcrypt, strongest)
+# Or via this site: https://hostingcanada.org/htpasswd-generator/
+# =====================================================================
+
+AuthType Basic
+AuthName "Shmu Admin — restricted"
+
+# IMPORTANT: change this absolute path to wherever .htpasswd lives on
+# your server. Most cPanel hosts use /home/USERNAME/public_html/...
+AuthUserFile "/home/REPLACE_WITH_YOUR_USERNAME/public_html/admin/.htpasswd"
+
+Require valid-user
+
+# Also block direct downloads of these auth files just in case
+<FilesMatch "^\.ht">
+    Require all denied
+</FilesMatch>
