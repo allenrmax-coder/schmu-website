@@ -92,6 +92,38 @@
         .admin-btn.danger { background-color: var(--color-orange); color: var(--color-cream); }
         .admin-btn.muted { background-color: transparent; border-color: var(--color-purple-light); color: var(--color-purple-light); box-shadow: none; }
 
+        .admin-modes {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .admin-mode {
+            background: rgba(20, 16, 31, 0.6);
+            border: 2px solid rgba(168, 125, 212, 0.3);
+            color: var(--color-purple-light);
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 9px 18px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition);
+            flex: 1;
+        }
+        .admin-mode:hover {
+            background: rgba(149, 240, 103, 0.10);
+            color: var(--color-green-bright);
+            border-color: rgba(149, 240, 103, 0.4);
+        }
+        .admin-mode.active {
+            background: var(--color-green);
+            color: var(--color-navy);
+            border-color: var(--color-navy);
+            box-shadow: 0 3px 0 var(--color-navy);
+        }
+
         .admin-tabs {
             display: flex;
             gap: 6px;
@@ -101,6 +133,67 @@
             background-color: rgba(20, 16, 31, 0.6);
             border-radius: var(--radius-md);
             border: 1px solid rgba(168, 125, 212, 0.25);
+        }
+
+        .admin-ann-card {
+            background-color: var(--color-cream);
+            border: 3px solid var(--color-navy);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            color: var(--color-navy);
+            box-shadow: var(--shadow-card);
+        }
+        .admin-ann-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(9, 46, 109, 0.18);
+            flex-wrap: wrap;
+        }
+        .admin-ann-header-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            color: var(--color-navy);
+        }
+        .admin-ann-header-info .date-badge {
+            background: var(--color-green);
+            color: var(--color-navy);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--color-navy);
+            font-size: 12.5px;
+            letter-spacing: 0.04em;
+        }
+        .admin-ann-controls {
+            display: inline-flex;
+            gap: 4px;
+        }
+        .admin-ann-fields {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media (min-width: 720px) {
+            .admin-ann-fields-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; }
+        }
+        .admin-ann-buttons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .admin-ann-button-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr auto;
+            gap: 6px;
+            align-items: center;
         }
         .admin-tab {
             background: transparent;
@@ -398,9 +491,15 @@
             </div>
         </div>
 
+        <div class="admin-modes" id="admin-modes">
+            <button class="admin-mode active" data-mode="menu">Menu</button>
+            <button class="admin-mode" data-mode="announcements">Announcements</button>
+        </div>
+
         <div class="admin-tabs" id="admin-tabs"></div>
 
         <div id="admin-category-editor"></div>
+        <div id="admin-announcements-editor" style="display:none"></div>
 
         <div class="admin-floating">
             <button class="admin-btn primary" id="btn-save-preview">Save Preview</button>
@@ -426,12 +525,29 @@
 
         var ADMIN_HASH = 'd0883547cf78a9225ffdbe4b4b31676cd7959dca9d60bc36666f0c4268da2855';
         var SESSION_KEY = 'shmu_admin_session';
-        var DATA_KEY = 'shmu_menu_override';
+        var MENU_KEY = 'shmu_menu_override';
+        var ANN_KEY = 'shmu_announcements_override';
 
-        var liveData = null;       // unmodified from server
-        var workingData = null;    // current in-memory edits
+        // Menu state
+        var liveMenu = null;
+        var workingMenu = null;
         var activeCategory = 'flower';
-        var hasUnsavedChanges = false;
+        var menuDirty = false;
+
+        // Announcements state
+        var liveAnn = null;
+        var workingAnn = null;
+        var annDirty = false;
+
+        // Top-level mode
+        var activeMode = 'menu';  // 'menu' or 'announcements'
+
+        // Convenience aliases used by old code below — keep working refs
+        function workingData() { return activeMode === 'menu' ? workingMenu : workingAnn; }
+        function isDirty() { return activeMode === 'menu' ? menuDirty : annDirty; }
+        function setDirty(v) {
+            if (activeMode === 'menu') menuDirty = v; else annDirty = v;
+        }
 
         async function sha256(text) {
             var buf = new TextEncoder().encode(text);
@@ -484,7 +600,7 @@
         });
 
         document.getElementById('btn-logout').addEventListener('click', function() {
-            if (hasUnsavedChanges && !confirm('You have unsaved changes. Log out anyway?')) return;
+            if ((menuDirty || annDirty) && !confirm('You have unsaved changes. Log out anyway?')) return;
             sessionStorage.removeItem(SESSION_KEY);
             location.reload();
         });
@@ -496,11 +612,15 @@
         // ---------- DATA ----------
         function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
 
-        function hasOverride() {
-            return !!localStorage.getItem(DATA_KEY);
+        function currentStorageKey() {
+            return activeMode === 'menu' ? MENU_KEY : ANN_KEY;
         }
 
-        function loadLive() {
+        function hasOverride() {
+            return !!localStorage.getItem(currentStorageKey());
+        }
+
+        function loadLiveMenu() {
             return fetch('../assets/data/menu.json', { cache: 'no-cache' })
                 .then(function(r) {
                     if (!r.ok) throw new Error('Failed to load menu.json');
@@ -508,9 +628,17 @@
                 });
         }
 
-        function loadOverride() {
+        function loadLiveAnn() {
+            return fetch('../assets/data/announcements.json', { cache: 'no-cache' })
+                .then(function(r) {
+                    if (!r.ok) throw new Error('Failed to load announcements.json');
+                    return r.json();
+                });
+        }
+
+        function loadOverride(key) {
             try {
-                var raw = localStorage.getItem(DATA_KEY);
+                var raw = localStorage.getItem(key);
                 if (!raw) return null;
                 return JSON.parse(raw);
             } catch (e) { return null; }
@@ -518,7 +646,7 @@
 
         function updateStatus() {
             var el = document.getElementById('admin-status');
-            if (hasUnsavedChanges) {
+            if (isDirty()) {
                 el.className = 'admin-status dirty';
                 el.textContent = 'Unsaved changes';
             } else if (hasOverride()) {
@@ -531,16 +659,40 @@
         }
 
         function markDirty() {
-            hasUnsavedChanges = true;
+            setDirty(true);
             updateStatus();
         }
 
-        // ---------- RENDERER ----------
+        // ---------- MODE SWITCHING ----------
+        function switchMode(mode) {
+            activeMode = mode;
+            document.querySelectorAll('.admin-mode').forEach(function(b) {
+                b.classList.toggle('active', b.getAttribute('data-mode') === mode);
+            });
+            document.getElementById('admin-category-editor').style.display = mode === 'menu' ? '' : 'none';
+            document.getElementById('admin-announcements-editor').style.display = mode === 'announcements' ? '' : 'none';
+            document.getElementById('admin-tabs').style.display = mode === 'menu' ? '' : 'none';
+            if (mode === 'menu') {
+                renderTabs();
+                renderEditor();
+            } else {
+                renderAnnouncementsEditor();
+            }
+            updateStatus();
+        }
+
+        document.querySelectorAll('.admin-mode').forEach(function(b) {
+            b.addEventListener('click', function() {
+                switchMode(b.getAttribute('data-mode'));
+            });
+        });
+
+        // ---------- MENU RENDERER ----------
         function renderTabs() {
             var tabsEl = document.getElementById('admin-tabs');
-            var cats = Object.keys(workingData.categories || {});
+            var cats = Object.keys(workingMenu.categories || {});
             tabsEl.innerHTML = cats.map(function(id) {
-                var label = workingData.categories[id].title || id;
+                var label = workingMenu.categories[id].title || id;
                 var cls = id === activeCategory ? 'admin-tab active' : 'admin-tab';
                 return '<button class="' + cls + '" data-cat="' + id + '">' + escapeHtml(label) + '</button>';
             }).join('');
@@ -577,7 +729,7 @@
         function renderEditor() {
             var container = document.getElementById('admin-category-editor');
             container.innerHTML = '';
-            var category = workingData.categories[activeCategory];
+            var category = workingMenu.categories[activeCategory];
             if (!category) return;
 
             // Category-level metadata
@@ -779,51 +931,233 @@
             return tr;
         }
 
+        // ---------- ANNOUNCEMENTS RENDERER ----------
+        function renderAnnouncementsEditor() {
+            var container = document.getElementById('admin-announcements-editor');
+            container.innerHTML = '';
+            var data = workingAnn;
+            if (!data) return;
+            if (!data.announcements) data.announcements = [];
+
+            // Meta fields
+            var meta = el('div', { className: 'admin-section-card' }, [
+                el('h3', null, 'Page text'),
+                el('div', { className: 'admin-section-meta' }, [
+                    field('Subtitle (top of page)', data.subtitle, function(v){ data.subtitle = v; markDirty(); }),
+                    field('Footer note', data.footerNote, function(v){ data.footerNote = v; markDirty(); })
+                ])
+            ]);
+            container.appendChild(meta);
+
+            // New + count
+            var header = el('div', { className: 'admin-section-card' }, [
+                el('div', { style: 'display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap' }, [
+                    el('h3', { style: 'margin:0' }, data.announcements.length + ' announcement' + (data.announcements.length === 1 ? '' : 's')),
+                    el('button', {
+                        className: 'admin-btn primary',
+                        on: { click: function(){
+                            var id = 'ann-' + Date.now();
+                            data.announcements.unshift({
+                                id: id,
+                                date: new Date().toLocaleDateString('en-US', { month:'numeric', day:'numeric' }),
+                                title: 'New Announcement',
+                                intro: '',
+                                body: '',
+                                buttons: []
+                            });
+                            markDirty();
+                            renderAnnouncementsEditor();
+                        }}
+                    }, '+ New Announcement')
+                ])
+            ]);
+            container.appendChild(header);
+
+            data.announcements.forEach(function(ann, idx) {
+                container.appendChild(renderAnnCard(data, ann, idx));
+            });
+        }
+
+        function renderAnnCard(data, ann, idx) {
+            var card = el('div', { className: 'admin-ann-card' });
+
+            // Header row: date badge + title + controls
+            var headerInfo = el('div', { className: 'admin-ann-header-info' }, [
+                el('span', { className: 'date-badge' }, ann.date || '—'),
+                el('span', null, ann.title || 'Untitled')
+            ]);
+
+            var moveUp = el('button', {
+                className: 'icon-btn small',
+                title: 'Move up',
+                on: { click: function(){
+                    if (idx === 0) return;
+                    var tmp = data.announcements[idx-1];
+                    data.announcements[idx-1] = data.announcements[idx];
+                    data.announcements[idx] = tmp;
+                    markDirty(); renderAnnouncementsEditor();
+                }}
+            }, '↑');
+            var moveDown = el('button', {
+                className: 'icon-btn small',
+                title: 'Move down',
+                on: { click: function(){
+                    if (idx >= data.announcements.length - 1) return;
+                    var tmp = data.announcements[idx+1];
+                    data.announcements[idx+1] = data.announcements[idx];
+                    data.announcements[idx] = tmp;
+                    markDirty(); renderAnnouncementsEditor();
+                }}
+            }, '↓');
+            var del = el('button', {
+                className: 'icon-btn small danger',
+                title: 'Delete announcement',
+                on: { click: function(){
+                    if (!confirm('Delete this announcement (' + (ann.date||'—') + ' — ' + (ann.title||'Untitled') + ')?')) return;
+                    data.announcements.splice(idx, 1);
+                    markDirty(); renderAnnouncementsEditor();
+                }}
+            }, 'Delete');
+
+            card.appendChild(el('div', { className: 'admin-ann-header' }, [
+                headerInfo,
+                el('div', { className: 'admin-ann-controls' }, [moveUp, moveDown, del])
+            ]));
+
+            // Edit fields
+            var fields = el('div', { className: 'admin-ann-fields' });
+
+            var dateRow = el('div', { className: 'admin-ann-fields-row' }, [
+                (function(){
+                    var f = field('Date', ann.date, function(v){
+                        ann.date = v;
+                        headerInfo.firstChild.textContent = v || '—';
+                        markDirty();
+                    });
+                    return f;
+                })(),
+                (function(){
+                    var f = field('Title', ann.title, function(v){
+                        ann.title = v;
+                        headerInfo.lastChild.textContent = v || 'Untitled';
+                        markDirty();
+                    });
+                    return f;
+                })()
+            ]);
+            fields.appendChild(dateRow);
+
+            fields.appendChild(textareaField('Intro (one paragraph above the body)', ann.intro, function(v){ ann.intro = v; markDirty(); }));
+            fields.appendChild(textareaField('Body (HTML allowed — <h5>, <p>, <b>, <em>, <u>, <br>)', ann.body, function(v){ ann.body = v; markDirty(); }));
+
+            // Buttons editor
+            var btnsLabel = el('label', null, 'Buttons (links to menu pages)');
+            btnsLabel.style.fontFamily = 'var(--font-display)';
+            btnsLabel.style.fontSize = '10.5px';
+            btnsLabel.style.fontWeight = '800';
+            btnsLabel.style.color = 'var(--color-purple-deep)';
+            btnsLabel.style.textTransform = 'uppercase';
+            btnsLabel.style.letterSpacing = '0.1em';
+            fields.appendChild(btnsLabel);
+
+            var btnsList = el('div', { className: 'admin-ann-buttons-list' });
+            (ann.buttons || []).forEach(function(btn, bIdx) {
+                var row = el('div', { className: 'admin-ann-button-row' });
+                var textInput = el('input', { className: 'admin-input', type: 'text', placeholder: 'Button text', value: btn.text || '' });
+                textInput.addEventListener('input', function(){ btn.text = textInput.value; markDirty(); });
+                var hrefInput = el('input', { className: 'admin-input', type: 'text', placeholder: 'menu/flower.html', value: btn.href || '' });
+                hrefInput.addEventListener('input', function(){ btn.href = hrefInput.value; markDirty(); });
+                var rm = el('button', {
+                    className: 'icon-btn danger small',
+                    on: { click: function(){
+                        ann.buttons.splice(bIdx, 1);
+                        markDirty(); renderAnnouncementsEditor();
+                    }}
+                }, '×');
+                row.appendChild(textInput);
+                row.appendChild(hrefInput);
+                row.appendChild(rm);
+                btnsList.appendChild(row);
+            });
+            fields.appendChild(btnsList);
+
+            var addBtn = el('button', {
+                className: 'icon-btn small',
+                style: 'margin-top:4px',
+                on: { click: function(){
+                    if (!ann.buttons) ann.buttons = [];
+                    ann.buttons.push({ text: '', href: '' });
+                    markDirty(); renderAnnouncementsEditor();
+                }}
+            }, '+ Add Button');
+            fields.appendChild(addBtn);
+
+            card.appendChild(fields);
+            return card;
+        }
+
         // ---------- ACTIONS ----------
         document.getElementById('btn-save-preview').addEventListener('click', function() {
             try {
-                localStorage.setItem(DATA_KEY, JSON.stringify(workingData));
-                hasUnsavedChanges = false;
+                var key = currentStorageKey();
+                var data = activeMode === 'menu' ? workingMenu : workingAnn;
+                localStorage.setItem(key, JSON.stringify(data));
+                setDirty(false);
                 updateStatus();
-                showToast('Preview saved — site will show your changes', 'success');
+                var label = activeMode === 'menu' ? 'menu' : 'announcements';
+                showToast('Preview saved — ' + label + ' page will show your changes', 'success');
             } catch (e) {
                 showToast('Failed to save: ' + e.message, 'error');
             }
         });
 
         document.getElementById('btn-discard').addEventListener('click', function() {
-            if (!hasUnsavedChanges) {
+            if (!isDirty()) {
                 showToast('No unsaved changes');
                 return;
             }
-            if (!confirm('Discard all unsaved changes?')) return;
-            workingData = deepClone(loadOverride() || liveData);
-            hasUnsavedChanges = false;
+            if (!confirm('Discard all unsaved changes in this view?')) return;
+            var key = currentStorageKey();
+            if (activeMode === 'menu') {
+                workingMenu = deepClone(loadOverride(key) || liveMenu);
+                renderTabs(); renderEditor();
+            } else {
+                workingAnn = deepClone(loadOverride(key) || liveAnn);
+                renderAnnouncementsEditor();
+            }
+            setDirty(false);
             updateStatus();
-            renderEditor();
             showToast('Changes discarded');
         });
 
         document.getElementById('btn-clear-preview').addEventListener('click', function() {
-            if (!confirm('Remove the preview override and go back to live data?')) return;
-            localStorage.removeItem(DATA_KEY);
-            workingData = deepClone(liveData);
-            hasUnsavedChanges = false;
+            if (!confirm('Remove the preview override for this view and go back to live data?')) return;
+            var key = currentStorageKey();
+            localStorage.removeItem(key);
+            if (activeMode === 'menu') {
+                workingMenu = deepClone(liveMenu);
+                renderTabs(); renderEditor();
+            } else {
+                workingAnn = deepClone(liveAnn);
+                renderAnnouncementsEditor();
+            }
+            setDirty(false);
             updateStatus();
-            renderEditor();
-            showToast('Preview cleared — site shows live data', 'success');
+            showToast('Preview cleared — live data restored', 'success');
         });
 
         document.getElementById('btn-download').addEventListener('click', function() {
             try {
-                workingData.lastUpdated = new Date().toISOString().slice(0, 10);
-                var json = JSON.stringify(workingData, null, 2);
+                var data = activeMode === 'menu' ? workingMenu : workingAnn;
+                data.lastUpdated = new Date().toISOString().slice(0, 10);
+                var json = JSON.stringify(data, null, 2);
+                var filename = activeMode === 'menu' ? 'menu.json' : 'announcements.json';
                 var blob = new Blob([json], { type: 'application/json' });
                 var a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = 'menu.json';
+                a.download = filename;
                 a.click();
-                showToast('Downloaded menu.json — replace assets/data/menu.json on server', 'success');
+                showToast('Downloaded ' + filename + ' — replace assets/data/' + filename + ' on server', 'success');
             } catch (e) {
                 showToast('Download failed: ' + e.message, 'error');
             }
@@ -831,23 +1165,25 @@
 
         // ---------- INIT ----------
         function init() {
-            loadLive()
-                .then(function(data) {
-                    liveData = data;
-                    var override = loadOverride();
-                    workingData = deepClone(override || liveData);
-                    hasUnsavedChanges = false;
-                    updateStatus();
-                    renderTabs();
-                    renderEditor();
+            Promise.all([loadLiveMenu(), loadLiveAnn()])
+                .then(function(results) {
+                    liveMenu = results[0];
+                    liveAnn = results[1];
+                    var menuOver = loadOverride(MENU_KEY);
+                    var annOver = loadOverride(ANN_KEY);
+                    workingMenu = deepClone(menuOver || liveMenu);
+                    workingAnn = deepClone(annOver || liveAnn);
+                    menuDirty = false;
+                    annDirty = false;
+                    switchMode('menu');
                 })
                 .catch(function(err) {
-                    showToast('Failed to load menu data: ' + err.message, 'error');
+                    showToast('Failed to load data: ' + err.message, 'error');
                 });
         }
 
         window.addEventListener('beforeunload', function(e) {
-            if (hasUnsavedChanges) {
+            if (menuDirty || annDirty) {
                 e.preventDefault();
                 e.returnValue = '';
             }
