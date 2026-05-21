@@ -1,0 +1,2 @@
+# Backups of menu.json / announcements.json are written here by save.php
+# before each overwrite. Older copies stay so you can roll back if needed.
