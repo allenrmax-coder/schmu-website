@@ -623,7 +623,6 @@
         <div class="admin-floating">
             <button class="admin-btn primary" id="btn-publish" title="Save to the server — changes go live for everyone immediately.">Publish to Site</button>
             <button class="admin-btn" id="btn-save-preview" title="Save changes locally — only your browser sees them. Useful for previewing before publishing.">Save Preview</button>
-            <button class="admin-btn" id="btn-download" title="Download the JSON file to your computer. Use this if Publish doesn't work on your hosting.">Download JSON</button>
             <button class="admin-btn muted" id="btn-discard" title="Throw away in-memory edits, keep the last saved preview.">Discard</button>
             <button class="admin-btn danger" id="btn-clear-preview" title="Remove the local preview override and show whatever's on the server.">Clear Preview</button>
         </div>
@@ -1339,23 +1338,6 @@
             showToast('Preview cleared — live data restored', 'success');
         });
 
-        document.getElementById('btn-download').addEventListener('click', function() {
-            try {
-                var data = activeMode === 'menu' ? workingMenu : workingAnn;
-                data.lastUpdated = new Date().toISOString().slice(0, 10);
-                var json = JSON.stringify(data, null, 2);
-                var filename = activeMode === 'menu' ? 'menu.json' : 'announcements.json';
-                var blob = new Blob([json], { type: 'application/json' });
-                var a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = filename;
-                a.click();
-                showToast('Downloaded ' + filename + ' — replace assets/data/' + filename + ' on server', 'success');
-            } catch (e) {
-                showToast('Download failed: ' + e.message, 'error');
-            }
-        });
-
         document.getElementById('btn-publish').addEventListener('click', async function() {
             var btn = this;
             var data = activeMode === 'menu' ? workingMenu : workingAnn;
@@ -1388,7 +1370,7 @@
                 if (!res.ok) {
                     var msg = (json && json.error) ? json.error : ('HTTP ' + res.status);
                     if (res.status === 404) {
-                        msg = 'save.php not found on server. Upload admin/save.php to your /admin/ folder (or PHP may not be enabled — use Download JSON instead).';
+                        msg = 'save.php not found. Upload admin/save.php to /admin/ on your server, then make sure PHP is enabled.';
                     }
                     throw new Error(msg);
                 }
