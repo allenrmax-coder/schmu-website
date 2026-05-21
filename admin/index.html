@@ -602,9 +602,9 @@
         <div class="admin-header">
             <div>
                 <h1 class="admin-title">SHMU <small>Admin</small></h1>
-                <div id="admin-status-line" style="margin-top:6px"><span class="admin-status live" id="admin-status">Live data</span></div>
             </div>
             <div class="admin-actions">
+                <span class="admin-status dirty" id="admin-status" style="display:none">Unsaved changes</span>
                 <a href="../index.html" class="admin-btn muted" id="btn-back-site">← Back to site</a>
                 <button class="admin-btn muted" id="btn-logout">Log out</button>
             </div>
@@ -773,16 +773,16 @@
         }
 
         function updateStatus() {
+            // Only show a status indicator when there are unsaved changes.
+            // "Live data" / "Preview active" pills are noise — toasts already
+            // confirm save/clear actions.
             var el = document.getElementById('admin-status');
             if (isDirty()) {
                 el.className = 'admin-status dirty';
                 el.textContent = 'Unsaved changes';
-            } else if (hasOverride()) {
-                el.className = 'admin-status preview';
-                el.textContent = 'Preview active';
+                el.style.display = '';
             } else {
-                el.className = 'admin-status live';
-                el.textContent = 'Live data';
+                el.style.display = 'none';
             }
         }
 
