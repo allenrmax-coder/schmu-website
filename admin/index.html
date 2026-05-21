@@ -444,6 +444,41 @@
             min-height: 16px;
         }
 
+        .admin-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-purple-light);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 12.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 18px;
+            padding: 7px 12px;
+            border-radius: var(--radius-sm);
+            transition: color var(--transition), background-color var(--transition);
+        }
+        .admin-back-link:hover {
+            color: var(--color-green-bright);
+            background-color: rgba(149, 240, 103, 0.10);
+        }
+
+        .admin-login-character {
+            width: 170px;
+            height: auto;
+            margin: 22px auto 0;
+            display: block;
+            filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45));
+        }
+
+        a#btn-back-site {
+            display: inline-flex !important;
+            align-items: center;
+            text-decoration: none;
+        }
+
         .admin-toast {
             position: fixed;
             top: 20px;
@@ -468,14 +503,16 @@
 </head>
 <body>
     <div class="admin-shell" id="admin-login-screen" style="display:none">
+        <a href="../index.html" class="admin-back-link">← Back to site</a>
         <div class="admin-login">
             <h2>Shmu Admin</h2>
-            <p>Enter admin password to edit menus.</p>
+            <p>Enter admin password</p>
             <form id="admin-login-form" autocomplete="off">
                 <input type="password" id="admin-login-pwd" placeholder="Admin password" autofocus />
                 <button type="submit">Unlock Admin</button>
                 <div class="admin-login-error" id="admin-login-error"></div>
             </form>
+            <img src="../assets/img/shmu_round_transparent.png" class="admin-login-character" alt="Shmu The Cannaprophet" />
         </div>
     </div>
 
@@ -486,7 +523,7 @@
                 <div id="admin-status-line" style="margin-top:6px"><span class="admin-status live" id="admin-status">Live data</span></div>
             </div>
             <div class="admin-actions">
-                <button class="admin-btn muted" id="btn-view-site">View Site</button>
+                <a href="../index.html" class="admin-btn muted" id="btn-back-site">← Back to site</a>
                 <button class="admin-btn muted" id="btn-logout">Log out</button>
             </div>
         </div>
@@ -605,9 +642,18 @@
             location.reload();
         });
 
-        document.getElementById('btn-view-site').addEventListener('click', function() {
-            window.open('../index.html', '_blank');
-        });
+        // btn-back-site is a normal anchor link — no JS handler needed.
+        // (Confirm before leaving if dirty)
+        var backLink = document.getElementById('btn-back-site');
+        if (backLink) {
+            backLink.addEventListener('click', function(e) {
+                if (menuDirty || annDirty) {
+                    if (!confirm('You have unsaved changes. Leave anyway?')) {
+                        e.preventDefault();
+                    }
+                }
+            });
+        }
 
         // ---------- DATA ----------
         function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
