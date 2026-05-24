@@ -621,8 +621,8 @@
         <div id="admin-announcements-editor" style="display:none"></div>
 
         <div class="admin-floating">
-            <button class="admin-btn primary" id="btn-publish" title="Save to the server — changes go live for everyone immediately.">Publish to Site</button>
-            <button class="admin-btn" id="btn-save-preview" title="Save changes locally — only your browser sees them. Useful for previewing before publishing.">Save Preview</button>
+            <button class="admin-btn primary" id="btn-download" title="Download the JSON file. Upload it via FTP to assets/data/ to publish your changes.">Download JSON</button>
+            <button class="admin-btn" id="btn-save-preview" title="Save changes locally — only your browser sees them. Useful for previewing before downloading.">Save Preview</button>
             <button class="admin-btn muted" id="btn-discard" title="Throw away in-memory edits, keep the last saved preview.">Discard</button>
             <button class="admin-btn danger" id="btn-clear-preview" title="Remove the local preview override and show whatever's on the server.">Clear Preview</button>
         </div>
@@ -707,9 +707,6 @@
                 var h = await sha256(pwd);
                 if (h === ADMIN_HASH) {
                     sessionStorage.setItem(SESSION_KEY, '1');
-                    // Keep the plaintext password in sessionStorage (this tab only,
-                    // cleared on tab close) so Publish can re-send it to save.php.
-                    sessionStorage.setItem('shmu_admin_pwd', pwd);
                     showApp();
                     init();
                 } else {
@@ -724,7 +721,6 @@
         document.getElementById('btn-logout').addEventListener('click', function() {
             if ((menuDirty || annDirty) && !confirm('You have unsaved changes. Log out anyway?')) return;
             sessionStorage.removeItem(SESSION_KEY);
-            sessionStorage.removeItem('shmu_admin_pwd');
             location.reload();
         });
 
@@ -1338,55 +1334,26 @@
             showToast('Preview cleared — live data restored', 'success');
         });
 
-        document.getElementById('btn-publish').addEventListener('click', async function() {
-            var btn = this;
+        document.getElementById('btn-download').addEventListener('click', function() {
             var data = activeMode === 'menu' ? workingMenu : workingAnn;
-            var target = activeMode === 'menu' ? 'menu' : 'announcements';
-            var pwd = sessionStorage.getItem('shmu_admin_pwd');
-
-            if (!pwd) {
-                // Session expired or admin landed here without re-login — prompt.
-                pwd = prompt('Re-enter admin password to publish:');
-                if (!pwd) return;
-            }
-
-            if (!confirm('Publish ' + target + ' to the live site? This overwrites assets/data/' + target + '.json for everyone.')) return;
+            var filename = activeMode === 'menu' ? 'menu.json' : 'announcements.json';
 
             data.lastUpdated = new Date().toISOString().slice(0, 10);
 
-            btn.disabled = true;
-            var originalText = btn.textContent;
-            btn.textContent = 'Publishing…';
-
             try {
-                var res = await fetch('save.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ password: pwd, target: target, data: data })
-                });
-                var json = null;
-                try { json = await res.json(); } catch (e) { /* ignore */ }
-
-                if (!res.ok) {
-                    var msg = (json && json.error) ? json.error : ('HTTP ' + res.status);
-                    if (res.status === 404) {
-                        msg = 'save.php not found. Upload admin/save.php to /admin/ on your server, then make sure PHP is enabled.';
-                    }
-                    throw new Error(msg);
-                }
-
-                // Success — clear the local preview override since the server now
-                // has the latest data, and reset dirty state.
-                var key = activeMode === 'menu' ? MENU_KEY : ANN_KEY;
-                localStorage.removeItem(key);
-                setDirty(false);
-                updateStatus();
-                showToast('Published — ' + target + '.json is live for everyone', 'success');
+                var json = JSON.stringify(data, null, 2);
+                var blob = new Blob([json], { type: 'application/json' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(function() { URL.revokeObjectURL(url); }, 100);
+                showToast('Downloaded ' + filename + ' — upload it to assets/data/ via FTP', 'success');
             } catch (e) {
-                showToast('Publish failed: ' + e.message, 'error');
-            } finally {
-                btn.disabled = false;
-                btn.textContent = originalText;
+                showToast('Download failed: ' + e.message, 'error');
             }
         });
 
